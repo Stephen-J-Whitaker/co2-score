@@ -5,6 +5,7 @@ carbon footprint
 
 import gspread
 from google.oauth2.service_account import Credentials
+import questionnaire
 
 # SCOPE definition code provided by Code Institute
 SCOPE = [
@@ -22,3 +23,12 @@ CO2_SHEET = GSPREAD_CLIENT.open('co2_score')
 # Ends here
 
 
+def main():
+    """
+    Run all program functions
+    """
+    question = questionnaire.Question(1, 2, 3)
+    print(question.max_poss_score)
+
+
+main()
