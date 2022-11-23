@@ -31,15 +31,16 @@ def validate_input(input, range):
     """
     try:
         int(input)
-        if input < 1 or input > range:
+        if int(input) < 1 or int(input) > range:
             raise ValueError(
                 print(f"Please select an option from 1 - {range}")
             )
     except ValueError as error:
         print(f"Data invalid: {error}")
-        print("Please select an option from 1 - {range}")
+        print(f"Please select an option from 1 - {range}")
+        print("Please press enter to try again")
         return False
-        
+
     return True
 
 
@@ -51,14 +52,19 @@ def question_user(questionnaire_details):
     """
     responses = []
     for question in questionnaire_details["questions"]:
-        print(question.question_info)
-        ind = 1
-        for option in question.options:
-            print(f"{ind}. " + option["option_detail"])
-            ind += 1
-        num = len(question.options)
-        responses.append(input(f"Please select an option [1 - {num}]"))
+        valid_input = False
+        while valid_input is False:
+            print(question.question_info)
+            ind = 1
+            for option in question.options:
+                print(f"{ind}. " + option["option_detail"])
+                ind += 1
+            num = len(question.options)
+            response = input(f"Please select an option [1 - {num}]")
+            valid_input = validate_input(response, num)
+        responses.append(int(response))
     return responses
+
 
 def main():
     """
@@ -70,5 +76,6 @@ def main():
     # print(questionnaire_details["questions"][0].question_info)
     # print(questionnaire_details["summary"])
     print(responses)
+
 
 main()
