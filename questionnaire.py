@@ -69,5 +69,6 @@ def get_questionnaire(co2_sheet):
             questionnaire["summary"] = string_wrap(row[1])
             question_instance = Question(question_info, max_poss_score,
                                          options)
+            questions.append(question_instance)
             questionnaire["questions"] = questions
     return questionnaire

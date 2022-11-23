@@ -3,6 +3,7 @@ Main co2 score code that asks a user questions in order to estimate their
 carbon footprint
 """
 
+import time
 import gspread
 from google.oauth2.service_account import Credentials
 import questionnaire
@@ -33,12 +34,15 @@ def validate_input(input, range):
         int(input)
         if int(input) < 1 or int(input) > range:
             raise ValueError(
-                print(f"Please select an option from 1 - {range}")
+                f"The value entered was out of range"
             )
     except ValueError as error:
+        # Clear the screen
+        print("\033[2J")
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {range}")
-        print("Please press enter to try again")
+        print("Please try again")
+        time.sleep(3)
         return False
 
     return True
@@ -52,6 +56,8 @@ def question_user(questionnaire_details):
     """
     responses = []
     for question in questionnaire_details["questions"]:
+        # Clear the screen
+        print("\033[2J")
         valid_input = False
         while valid_input is False:
             print(question.question_info)
@@ -62,7 +68,7 @@ def question_user(questionnaire_details):
             num = len(question.options)
             response = input(f"Please select an option [1 - {num}]")
             valid_input = validate_input(response, num)
-        responses.append(int(response))
+        responses.append(question.options[int(response) - 1]["score"])
     return responses
 
 
