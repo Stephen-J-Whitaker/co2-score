@@ -22,7 +22,6 @@ def string_wrap(string):
     new_string = ""
     string.replace("\n", "")
     if len(string) <= 55:
-        print("string = " + string)
         return string
     else:
         list_string = list(string)
@@ -34,7 +33,6 @@ def string_wrap(string):
             ind += 54
         for char in list_string:
             new_string += char
-        print("new_string " + new_string)
         return new_string
 
 
@@ -61,19 +59,15 @@ def get_questionnaire(co2_sheet):
                 questions.append(question_instance)
             options = []
             question_info = string_wrap(row[1])
-            print(" questions info: " + question_info)
             max_poss_score = row[2]
-            print("max_poss_score " + max_poss_score.replace(
-                "Max possible score ", ""))
         elif "Option" in row[0]:
             option = {}
             option["option_detail"] = string_wrap(row[1])
             option["score"] = row[2]
-            options += option
+            options.append(option)
         elif "Summary" in row[0]:
             questionnaire["summary"] = string_wrap(row[1])
             question_instance = Question(question_info, max_poss_score,
                                          options)
-            print(question_instance.question_info)
             questionnaire["questions"] = questions
     return questionnaire

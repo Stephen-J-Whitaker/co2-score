@@ -30,8 +30,15 @@ def question_user(questionnaire_details):
      display the question to the user and record their
      responses into a variable
     """
+    responses = []
     for question in questionnaire_details["questions"]:
         print(question.question_info)
+        ind = 1
+        for option in question.options:
+            print(f"{ind}. " + option["option_detail"])
+            ind += 1
+        num = len(question.options)
+        responses.append(input(f"Please select an option [1 - {num}]"))
 
 def main():
     """
