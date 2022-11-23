@@ -13,6 +13,21 @@ class Question:
         self.options = options
 
 
+def string_wrap(string):
+    """
+    Take strings and add a newline escape sequence
+    after every 55th character where necessary to wrap
+    the strings within a terminal 
+    """
+    new_string = ""
+    if string.length > 55:
+        for char in range(string.length):
+            new_string += string[char]
+            if char == 55:
+                new_string += "\n"
+    return string
+
+
 def get_questionnaire(CO2_SHEET):
     """
     Import the questionnaire from the external spreadsheet
@@ -35,7 +50,7 @@ def get_questionnaire(CO2_SHEET):
                                              options)
                 questions.append(question_instance)
             options = []
-            question_info = row[1]
+            question_info = string_wrap(row[1])
             max_poss_score = row[2]
         elif "Option" in row[0]:
             option = {}
