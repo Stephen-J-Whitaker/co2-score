@@ -20,20 +20,20 @@ def string_wrap(string):
     the strings within a terminal 
     """
     new_string = ""
-    if string.length > 55:
-        for char in range(string.length):
+    if len(string) > 55:
+        for char in len(string):
             new_string += string[char]
             if char == 55:
                 new_string += "\n"
     return string
 
 
-def get_questionnaire(CO2_SHEET):
+def get_questionnaire(co2_sheet):
     """
     Import the questionnaire from the external spreadsheet
     """
     first_step = True
-    questionnaire_raw = CO2_SHEET.worksheet("questionnaire").get_all_values()
+    questionnaire_raw = co2_sheet.worksheet("questionnaire").get_all_values()
     question_info = ""
     max_poss_score = None
     # Options held in a list so order retained
