@@ -6,6 +6,7 @@ carbon footprint
 import gspread
 from google.oauth2.service_account import Credentials
 import questionnaire
+from pprint import pprint
 
 # SCOPE definition code provided by Code Institute
 SCOPE = [
@@ -27,8 +28,8 @@ def main():
     """
     Run all program functions
     """
-    question = questionnaire.Question(1, 2, 3)
-    print(question.max_poss_score)
+    questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
+    pprint(questionnaire_details)
 
 
 main()
