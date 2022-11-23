@@ -20,15 +20,21 @@ def string_wrap(string):
     the strings within a terminal
     """
     new_string = ""
+    string.replace("\n", "")
     if len(string) <= 55:
-        print(string)
+        print("string = " + string)
         return string
     else:
-        for char in string:
+        list_string = list(string)
+        ind = 55
+        while len(list_string) > ind:
+            while list_string[ind] != " ":
+                ind -= 1
+            list_string.insert(ind + 1, "\n")
+            ind += 54
+        for char in list_string:
             new_string += char
-            if char == 55:
-                new_string += "\n"
-                print(new_string)
+        print("new_string " + new_string)
         return new_string
 
 

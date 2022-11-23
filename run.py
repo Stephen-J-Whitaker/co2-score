@@ -31,6 +31,7 @@ def main():
     questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
     pprint(questionnaire_details)
     print(questionnaire_details["questions"][0].question_info)
+    print(questionnaire_details["summary"])
 
 
 main()
