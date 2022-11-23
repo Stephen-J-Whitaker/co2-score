@@ -27,22 +27,25 @@ def get_questionnaire(CO2_SHEET):
     questions = []
     questionnaire = {}
     for row in questionnaire_raw:
-        if row[0] == "Step":
+        if "Step" in row[0]:
             if first_step is True:
                 first_step = False
             else:
                 question_instance = Question(question_info, max_poss_score,
                                              options)
-                questions += question_instance
+                questions.append(question_instance)
             options = []
             question_info = row[1]
             max_poss_score = row[2]
-        elif row[0] == "Option":
+        elif "Option" in row[0]:
             option = {}
             option["option_detail"] = row[1]
             option["score"] = row[2]
             options += option
-        elif row[0] == "Summary":
+        elif "Summary" in row[0]:
             questionnaire["summary"] = row[1]
+            question_instance = Question(question_info, max_poss_score,
+                                         options)
+            print(question_instance.question_info)
             questionnaire["questions"] = questions
     return questionnaire
