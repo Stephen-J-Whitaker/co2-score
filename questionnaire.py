@@ -17,15 +17,19 @@ def string_wrap(string):
     """
     Take strings and add a newline escape sequence
     after every 55th character where necessary to wrap
-    the strings within a terminal 
+    the strings within a terminal
     """
     new_string = ""
-    if len(string) > 55:
-        for char in len(string):
-            new_string += string[char]
+    if len(string) <= 55:
+        print(string)
+        return string
+    else:
+        for char in string:
+            new_string += char
             if char == 55:
                 new_string += "\n"
-    return string
+                print(new_string)
+        return new_string
 
 
 def get_questionnaire(co2_sheet):
@@ -51,14 +55,17 @@ def get_questionnaire(co2_sheet):
                 questions.append(question_instance)
             options = []
             question_info = string_wrap(row[1])
+            print(" questions info: " + question_info)
             max_poss_score = row[2]
+            print("max_poss_score " + max_poss_score.replace(
+                "Max possible score ", ""))
         elif "Option" in row[0]:
             option = {}
-            option["option_detail"] = row[1]
+            option["option_detail"] = string_wrap(row[1])
             option["score"] = row[2]
             options += option
         elif "Summary" in row[0]:
-            questionnaire["summary"] = row[1]
+            questionnaire["summary"] = string_wrap(row[1])
             question_instance = Question(question_info, max_poss_score,
                                          options)
             print(question_instance.question_info)
