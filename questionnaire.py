@@ -21,16 +21,16 @@ def string_wrap(string):
     """
     new_string = ""
     string.replace("\n", "")
-    if len(string) <= 55:
+    if len(string) <= 70:
         return string
     else:
         list_string = list(string)
-        ind = 55
+        ind = 70
         while len(list_string) > ind:
             while list_string[ind] != " ":
                 ind -= 1
             list_string.insert(ind + 1, "\n")
-            ind += 54
+            ind += 69
         for char in list_string:
             new_string += char
         return new_string

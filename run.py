@@ -24,6 +24,25 @@ CO2_SHEET = GSPREAD_CLIENT.open('co2_score')
 # Code Institute code ends here
 
 
+def validate_input(input, range):
+    """
+    Confirm that the user input is in range and
+    is numeric.
+    """
+    try:
+        int(input)
+        if input < 1 or input > range:
+            raise ValueError(
+                print(f"Please select an option from 1 - {range}")
+            )
+    except ValueError as error:
+        print(f"Data invalid: {error}")
+        print("Please select an option from 1 - {range}")
+        return False
+        
+    return True
+
+
 def question_user(questionnaire_details):
     """
     Recall each question from the questionnaire sequentially,
@@ -39,16 +58,17 @@ def question_user(questionnaire_details):
             ind += 1
         num = len(question.options)
         responses.append(input(f"Please select an option [1 - {num}]"))
+    return responses
 
 def main():
     """
     Run all program functions
     """
     questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
-    question_user(questionnaire_details)
+    responses = question_user(questionnaire_details)
     # pprint(questionnaire_details)
     # print(questionnaire_details["questions"][0].question_info)
     # print(questionnaire_details["summary"])
-
+    print(responses)
 
 main()
