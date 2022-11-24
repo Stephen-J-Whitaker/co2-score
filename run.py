@@ -6,6 +6,7 @@ carbon footprint
 import time
 import gspread
 from google.oauth2.service_account import Credentials
+import gui
 import questionnaire
 from pprint import pprint
 
@@ -37,8 +38,7 @@ def validate_input(input, range):
                 "The value entered was out of range"
             )
     except ValueError as error:
-        # Clear the screen
-        print("\033[2J")
+        gui.clear_screen()
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {range}")
         print("Please try again")
