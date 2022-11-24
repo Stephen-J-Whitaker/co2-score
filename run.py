@@ -8,6 +8,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import gui
 import questionnaire
+from colorama import Fore, Back, Style
 from pprint import pprint
 
 # SCOPE definition code provided by Code Institute

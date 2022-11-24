@@ -4,7 +4,6 @@ Module to create graphical backdrops
 
 from PIL import Image
 from numpy import asarray
-from colorama import Fore, Back, Style
 
 # Map bitmap pixel colours to equivalent escape characters
 colour_map = {
@@ -27,3 +26,23 @@ terminal_command = {
 }
 
 
+class GuiImage:
+    """
+    Creates an instance of a GUI image for reading
+    """
+    def __inti__(self, pixel_array, image_size, image_array):
+        self.pixel_array = pixel_array
+        self.image_size = image_size
+        self.image_array = image_array
+
+
+def open_image(image_name):
+    """
+    Opens the requested image for use
+    """
+    with Image.open(image_name) as image:
+        pixel_array = image.load()
+        image_size = image.size
+        image_array = asarray(image)
+    gui_image = GuiImage(pixel_array, image_size, image_array)
+    return gui_image
