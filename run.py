@@ -34,7 +34,7 @@ def validate_input(input, range):
         int(input)
         if int(input) < 1 or int(input) > range:
             raise ValueError(
-                f"The value entered was out of range"
+                "The value entered was out of range"
             )
     except ValueError as error:
         # Clear the screen

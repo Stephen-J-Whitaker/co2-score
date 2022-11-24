@@ -31,8 +31,7 @@ def string_wrap(string):
                 ind -= 1
             list_string.insert(ind + 1, "\n")
             ind += 69
-        for char in list_string:
-            new_string += char
+        new_string = "".join(list_string)
         return new_string
 
 
