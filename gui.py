@@ -17,3 +17,11 @@ colour_map = {
     "(0, 255, 255)": "\033[46;36m\u2588",  # cyan
     "(255, 255, 255)": "\033[47;37m\u2588"  # white
 }
+
+
+def clear_screen():
+    """
+    Clears the terminal
+    """
+    print("\033[2J")
+
