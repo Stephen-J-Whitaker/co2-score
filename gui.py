@@ -36,6 +36,14 @@ class GuiImage:
         self.image_array = image_array
 
 
+def terminal_control(command):
+    """
+    Takes a passed command and prints required
+    escape character to screen to action the command
+    """
+    print(terminal_command[command])
+
+
 def open_image(image_name):
     """
     Opens the requested image for use
@@ -50,7 +58,7 @@ def open_image(image_name):
 
 def set_gui_background(requested_background):
     """
-    Convert bitmap to escape characters and print to screen
+    Translate bitmap pixels to escape characters and print to screen
     """
     image_map = open_image(requested_background)
     gui_image = ""
@@ -64,4 +72,6 @@ def set_gui_background(requested_background):
                 gui_image += "\n"
 
     # Hide cursor and blat with no new line at end
-    print("\033[H\033[?25l" + gui_image, end="")
+    terminal_control("cursor_home")
+    terminal_control("hide_cursor")
+    print(gui_image, end="")
