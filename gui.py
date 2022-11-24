@@ -18,10 +18,12 @@ colour_map = {
     "(255, 255, 255)": "\033[47;37m\u2588"  # white
 }
 
+# Terminal command to escape character map
+terminal_command = {
+    "clear_screen": "\033[2J",
+    "hide_cursor": "\033[?25l",
+    "show_cursor": "\033[?25h",
+    "cursor_home": "\033[H"
+}
 
-def clear_screen():
-    """
-    Clears the terminal
-    """
-    print("\033[2J")
 

@@ -38,7 +38,7 @@ def validate_input(input, range):
                 "The value entered was out of range"
             )
     except ValueError as error:
-        gui.clear_screen()
+        print(gui.terminal_command["clear_screen"])
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {range}")
         print("Please try again")
