@@ -99,6 +99,9 @@ def main():
     """
     gui.set_gui_background("assets/images/gui_world.bmp")
     time.sleep(3)
+    gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
+    gui.app_title()
+    time.sleep(3)
     questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
     responses = question_user(questionnaire_details)
     total_score = results(responses, questionnaire_details)

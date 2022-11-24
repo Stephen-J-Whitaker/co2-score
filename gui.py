@@ -4,6 +4,7 @@ Module to create graphical backdrops
 
 from PIL import Image
 from numpy import asarray
+from colorama import Fore, Back, Style
 
 # Map bitmap pixel colours to equivalent escape characters
 colour_map = {
@@ -24,6 +25,25 @@ terminal_command = {
     "show_cursor": "\033[?25h",
     "cursor_home": "\033[H"
 }
+
+
+title = [
+    # Put cursor home for set style and colour else renders in wrong place
+    Back.BLUE + Fore.WHITE + Style.BRIGHT + "\033[H"
+    "\033[5;20H         ██████╗ ██████╗ ██████╗"     
+    "\033[6;20H        ██╔════╝██╔═══██╗╚════██╗"
+    "\033[7;20H        ██║     ██║   ██║ █████╔╝"
+    "\033[8;20H        ██║     ██║   ██║██╔═══╝"
+    "\033[9;20H        ╚██████╗╚██████╔╝███████╗"
+    "\033[10;20H         ╚═════╝ ╚═════╝ ╚══════╝"
+    "\033[12;20H███████╗ ██████╗ ██████╗ ██████╗ ███████╗"
+    "\033[13;20H██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝"
+    "\033[14;20H███████╗██║     ██║   ██║██████╔╝█████╗"
+    "\033[15;20H╚════██║██║     ██║   ██║██╔══██╗██╔══╝"
+    "\033[16;20H███████║╚██████╗╚██████╔╝██║  ██║███████╗"
+    "\033[17;20H╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝"
+    "\033[19;20H       Calculate your co2 score"
+]
 
 
 class GuiImage:
@@ -75,3 +95,11 @@ def set_gui_background(requested_background):
     terminal_control("cursor_home")
     terminal_control("hide_cursor")
     print(gui_image, end="")
+
+
+def app_title():
+    """
+    Define and print the app title to screen
+    """
+    for string in title:
+        print(string)
