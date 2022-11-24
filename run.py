@@ -81,6 +81,15 @@ def results(responses, questionnaire_details):
     print("\033[2J")
     print(f"Your carbon footprint score is {result}")
     print(questionnaire_details["summary"])
+    return result
+
+
+def store_results(user_results):
+    """
+    Put user data in external spreadsheet
+    """
+    user_sheet = CO2_SHEET.worksheet("co2_scores")
+    user_sheet.append_row(results)
 
 
 def main():
@@ -89,7 +98,9 @@ def main():
     """
     questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
     responses = question_user(questionnaire_details)
-    results(responses, questionnaire_details)
+    total_score = results(responses, questionnaire_details)
+    print(responses)
+    store_results(responses)
     # pprint(questionnaire_details)
     # print(questionnaire_details["questions"][0].question_info)
     # print(questionnaire_details["summary"])
