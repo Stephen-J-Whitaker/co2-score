@@ -30,7 +30,7 @@ class GuiImage:
     """
     Creates an instance of a GUI image for reading
     """
-    def __inti__(self, pixel_array, image_size, image_array):
+    def __init__(self, pixel_array, image_size, image_array):
         self.pixel_array = pixel_array
         self.image_size = image_size
         self.image_array = image_array
@@ -46,3 +46,22 @@ def open_image(image_name):
         image_array = asarray(image)
     gui_image = GuiImage(pixel_array, image_size, image_array)
     return gui_image
+
+
+def set_gui_background(requested_background):
+    """
+    Convert bitmap to escape characters and print to screen
+    """
+    image_map = open_image(requested_background)
+    gui_image = ""
+    for pixel_row in range(int(image_map.image_size[1])):
+        for pixel_col in range(int(image_map.image_size[0])):
+            # Run next command twice as two terminal char cells 
+            # are roughly square matching bitmap pixel shape
+            gui_image += colour_map[str(image_map.pixel_array
+                                        [pixel_col, pixel_row])] * 2
+            if pixel_col == 39 and pixel_row <= 22:
+                gui_image += "\n"
+
+    # Hide cursor and blat with no new line at end
+    print("\033[H\033[?25l" + gui_image, end="")
