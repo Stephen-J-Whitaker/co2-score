@@ -99,8 +99,8 @@ def initialise_user():
     Create user instance and call questionnaire
     """
     current_user = User(None)
-    current_user.session_results["date"] = datetime.now().date()
-    print("date " + current_user.session_results["date"])
+    date = datetime.now().date().strftime("%d-%m-%Y")
+    current_user.session_results["date"] = date
     question_user(current_user)
 
 
