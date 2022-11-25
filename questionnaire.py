@@ -2,8 +2,6 @@
 Module to import questionnaire from external spreasheet
 """
 
-from pprint import pprint
-
 
 class Question:
     """

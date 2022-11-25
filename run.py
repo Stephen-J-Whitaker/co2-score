@@ -9,10 +9,9 @@ import random
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
+from colorama import Fore, Back, Style
 import gui
 import questionnaire
-from colorama import Fore, Back, Style
-from pprint import pprint
 
 # SCOPE definition code provided by Code Institute
 SCOPE = [
@@ -91,7 +90,8 @@ def main_menu(current_user):
         valid_input = valid_input = validate_option_input(response, 3)
     if response == "1":
         if current_user is None:
-            initialise_user()
+            current_user = initialise_user()
+            question_user(current_user)
 
 
 def initialise_user():
@@ -101,23 +101,29 @@ def initialise_user():
     current_user = User(None)
     date = datetime.now().date().strftime("%d-%m-%Y")
     current_user.session_results["date"] = date
-    question_user(current_user)
+    return current_user
 
 
-def store_results(user_results):
+def store_results(current_user):
     """
     Put user data in external spreadsheet
     """
+    sheet_data = []
+    sheet_data.append(current_user.user_id)
+    sheet_data.append(current_user.session_results["date"])
+    for data in current_user.session_results["results"]:
+        sheet_data.append(data)
+    sheet_data.append(str(current_user.session_results["final_score"]))
     user_sheet = CO2_SHEET.worksheet("co2_scores")
-    user_sheet.append_row(user_results)
+    user_sheet.append_row(sheet_data)
 
 
 def results(current_user):
     """
     Calculate co2 score and inform user
     """
-    user_results = current_user.session_results["results"]
-    current_user.session_results["final_score"] = sum(user_results)
+    user_results = sum(current_user.session_results["results"])
+    current_user.session_results["final_score"] = user_results
     gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {user_results}")
     print(questionnaire_details["summary"] + "\n\n")
@@ -156,7 +162,6 @@ def create_user_id():
     num_char_pool = list(string.ascii_letters)
     num_pool = range(10)
     num_char_pool += [str(num) for num in num_pool]
-    print(num_char_pool)
     user_id_list = []
     for x in range(5):
         user_id_list.append(random.choice(num_char_pool))
@@ -184,7 +189,7 @@ def validate_yes_no(user_input, valid_range):
     return True
 
 
-def store_data(total_score):
+def store_data(current_user):
     """
     Ask the user if they would like to store their results
     and take appropraite action to their response
@@ -196,11 +201,12 @@ def store_data(total_score):
         user_input.lower()
         valid_input = validate_yes_no(user_input, ["y", "n"])
     if user_input == "n":
-        # Call main menu : to be implemented
-        pass
+        del current_user
+        main_menu(None)
     else:
         user_id = create_user_id()
-    
+        current_user.user_id = user_id
+        store_results(current_user)
 
 
 def main():
