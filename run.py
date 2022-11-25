@@ -52,8 +52,8 @@ def validate_input(input, range):
 def question_user(questionnaire_details):
     """
     Recall each question from the questionnaire sequentially,
-     display the question to the user and record their
-     responses into a variable
+    display the question to the user and record their
+    responses into a variable
     """
     responses = []
     for question in questionnaire_details["questions"]:
@@ -90,7 +90,7 @@ def store_results(user_results):
     Put user data in external spreadsheet
     """
     user_sheet = CO2_SHEET.worksheet("co2_scores")
-    user_sheet.append_row(results)
+    user_sheet.append_row(user_results)
 
 
 def main():
