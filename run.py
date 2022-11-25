@@ -4,6 +4,7 @@ carbon footprint
 """
 
 import time
+import sys
 import string
 import random
 from datetime import datetime
@@ -92,6 +93,8 @@ def main_menu(current_user):
         if current_user is None:
             current_user = initialise_user()
             question_user(current_user)
+        elif response == "3":
+            sys.exit()
 
 
 def initialise_user():
