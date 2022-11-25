@@ -86,12 +86,46 @@ def results(responses, questionnaire_details):
 
 def create_user_id():
     """
+    Generate and return a random 5 character alphanumeric user id
+    """
+    num_char_pool = list(string.ascii_letters)
+
+
+def validate_yes_no(user_input):
+    """
+    Check if the users response was y or n (or Y and N)
+    and raise ValueError if not
+    """
+    try:
+        if user_input != "y" or user_input != "n":
+            raise ValueError(
+                'Please enter either "y" for yes or "n" for no'
+            )
+    except ValueError as error:
+        print(gui.terminal_command["clear_screen"])
+        print(f"Data invalid: {error}")
+        print("Please try again")
+        time.sleep(3)
+        return False
+
+    return True    
+
+
+def store_data(total_score):
+    """
     Ask the user if they would like to store their results
     and take appropraite action to their response
     """
-    print("Would you like your results to be stored?")
-    user_input = input('Please enter "Y" for Yes and "N" for No: ')
-    validate_yes_no(user_input)
+    valid_input = False
+    while valid_input is False:
+        print("Would you like your results to be stored?")
+        user_input = input('Please enter "y" for Yes and "n" for No: ').lower
+        valid_input = validate_yes_no(user_input)
+    if user_input == "n":
+        # Call main menu : to be implemented
+        pass
+    else:
+        create_user_id()
 
 
 def store_results(user_results):
@@ -114,12 +148,10 @@ def main():
     questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
     responses = question_user(questionnaire_details)
     total_score = results(responses, questionnaire_details)
-    print(responses)
-    store_results(responses)
+    store_data(total_score)
     # pprint(questionnaire_details)
     # print(questionnaire_details["questions"][0].question_info)
     # print(questionnaire_details["summary"])
-    print(responses)
 
 
 main()
