@@ -23,7 +23,9 @@ terminal_command = {
     "clear_screen": "\033[2J",
     "hide_cursor": "\033[?25l",
     "show_cursor": "\033[?25h",
-    "cursor_home": "\033[H"
+    "cursor_home": "\033[H",
+    "text_blue": "\033[34m",
+    "text_white": "\033[37m"
 }
 
 

@@ -57,8 +57,7 @@ def question_user(questionnaire_details):
     """
     responses = []
     for question in questionnaire_details["questions"]:
-        # Clear the screen
-        print("\033[2J")
+        gui.terminal_control("clear_screen")
         valid_input = False
         while valid_input is False:
             print(question.question_info)
@@ -67,7 +66,7 @@ def question_user(questionnaire_details):
                 print(f"{ind}. " + option["option_detail"])
                 ind += 1
             num = len(question.options)
-            response = input(f"Please select an option [1 - {num}]")
+            response = input(f"Please select an option [1 - {num}]: ")
             valid_input = validate_input(response, num)
         responses.append(int(question.options[int(response) - 1]["score"]))
     return responses
@@ -78,10 +77,9 @@ def results(responses, questionnaire_details):
     Calculate co2 score and inform user
     """
     result = sum(responses)
-    # Clear the screen
-    print("\033[2J")
+    gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {result}")
-    print(questionnaire_details["summary"])
+    print(questionnaire_details["summary"] + "\n\n")
     return result
 
 
