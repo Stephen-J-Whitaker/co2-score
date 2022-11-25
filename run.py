@@ -38,21 +38,30 @@ class User():
         self.session_results = session_results
 
 
-def validate_option_input(input, range):
+class PreviousUser(User):
+    """
+    Creates a user instance with addition of previous results
+    """
+    def __init__(self, user_id, session_results, previous_results):
+        super().__init__(user_id, session_results)
+        self.previous_results = previous_results
+
+
+def validate_option_input(user_input, user_range):
     """
     Confirm that the user input is in range and
     is numeric.
     """
     try:
-        int(input)
-        if int(input) < 1 or int(input) > range:
+        int(user_input)
+        if int(user_input) < 1 or int(user_input) > user_range:
             raise ValueError(
                 "The value entered was out of range"
             )
     except ValueError as error:
         print(gui.terminal_command["clear_screen"])
         print(f"Data invalid: {error}")
-        print(f"Please select an option from 1 - {range}")
+        print(f"Please select an option from 1 - {user_range}")
         print("Please try again")
         input("Press Enter to continue.....")
         return False
