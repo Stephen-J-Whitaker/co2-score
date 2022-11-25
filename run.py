@@ -29,6 +29,15 @@ CO2_SHEET = GSPREAD_CLIENT.open('co2_score')
 # Code Institute code ends here
 
 
+class User():
+    """
+    Create a user instance
+    """
+    def __init__(self, user_id, session_results):
+        self.user_id = user_id
+        self.session_results = session_results
+
+
 def validate_option_input(input, range):
     """
     Confirm that the user input is in range and
@@ -95,11 +104,9 @@ def create_user_id():
     num_char_pool += [str(num) for num in num_pool]
     print(num_char_pool)
     user_id_list = []
-    for char in range(5):
+    for x in range(5):
         user_id_list.append(random.choice(num_char_pool))
-        print(user_id_list)
     user_id = "".join(user_id_list)
-    print(user_id)
     return user_id
 
 
@@ -138,7 +145,8 @@ def store_data(total_score):
         # Call main menu : to be implemented
         pass
     else:
-        create_user_id()
+        user_id = create_user_id()
+    
 
 
 def store_results(user_results):
