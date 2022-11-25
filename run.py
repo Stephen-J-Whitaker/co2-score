@@ -101,7 +101,9 @@ def main_menu(current_user):
             current_user = initialise_user()
             question_user(current_user)
     elif response == "3":
+        print(Style.RESET_ALL)
         gui.terminal_control("clear_screen")
+        gui.terminal_control("cursor_home")
         sys.exit()
     elif response == "4":
         log_out(current_user)
