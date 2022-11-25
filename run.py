@@ -35,17 +35,20 @@ class User():
     """
     Create a user instance
     """
-    def __init__(self, user_id, session_results):
+    def __init__(self, user_id):
         self.user_id = user_id
-        self.session_results = session_results
+        self.session_results = {
+            "date": None,
+            "results": None
+        }
 
 
 class PreviousUser(User):
     """
     Creates a user instance with addition of previous results
     """
-    def __init__(self, user_id, session_results, previous_results):
-        super().__init__(user_id, session_results)
+    def __init__(self, user_id, previous_results):
+        super().__init__(user_id)
         self.previous_results = previous_results
 
 
@@ -82,10 +85,17 @@ def main_menu():
     print("3. Exit software\n")
     valid_input = False
     while valid_input is False:
-        response = input(f"Please select an option [1 - 3]: ")
+        response = input("Please select an option [1 - 3]: ")
         valid_input = valid_input = validate_option_input(response, 3)
     if response == "1":
         question_user(questionnaire_details)
+
+
+def initialise_user():
+    """
+    Create user instance and call questionnaire
+    """
+    current_user = User(None, {},)
 
 
 def store_results(user_results):
