@@ -4,7 +4,9 @@ carbon footprint
 """
 
 import time
+import string
 import gspread
+import random
 from google.oauth2.service_account import Credentials
 import gui
 import questionnaire
@@ -43,7 +45,7 @@ def validate_option_input(input, range):
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {range}")
         print("Please try again")
-        time.sleep(3)
+        input("Press Enter to continue.....")
         return False
 
     return True
@@ -89,15 +91,25 @@ def create_user_id():
     Generate and return a random 5 character alphanumeric user id
     """
     num_char_pool = list(string.ascii_letters)
+    num_pool = range(10)
+    num_char_pool += [str(num) for num in num_pool]
+    print(num_char_pool)
+    user_id_list = []
+    for char in range(5):
+        user_id_list.append(random.choice(num_char_pool))
+        print(user_id_list)
+    user_id = "".join(user_id_list)
+    print(user_id)
+    return user_id
 
 
-def validate_yes_no(user_input):
+def validate_yes_no(user_input, valid_range):
     """
     Check if the users response was y or n (or Y and N)
     and raise ValueError if not
     """
     try:
-        if user_input != "y" or user_input != "n":
+        if user_input not in valid_range:
             raise ValueError(
                 'Please enter either "y" for yes or "n" for no'
             )
@@ -105,10 +117,10 @@ def validate_yes_no(user_input):
         print(gui.terminal_command["clear_screen"])
         print(f"Data invalid: {error}")
         print("Please try again")
-        time.sleep(3)
+        input("Press Enter to continue.....")
         return False
 
-    return True    
+    return True
 
 
 def store_data(total_score):
@@ -119,8 +131,9 @@ def store_data(total_score):
     valid_input = False
     while valid_input is False:
         print("Would you like your results to be stored?")
-        user_input = input('Please enter "y" for Yes and "n" for No: ').lower
-        valid_input = validate_yes_no(user_input)
+        user_input = input('Please enter "y" for Yes and "n" for No: ')
+        user_input.lower()
+        valid_input = validate_yes_no(user_input, ["y", "n"])
     if user_input == "n":
         # Call main menu : to be implemented
         pass
