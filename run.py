@@ -5,8 +5,9 @@ carbon footprint
 
 import time
 import string
-import gspread
 import random
+from datetime import datetime
+import gspread
 from google.oauth2.service_account import Credentials
 import gui
 import questionnaire
@@ -39,7 +40,8 @@ class User():
         self.user_id = user_id
         self.session_results = {
             "date": None,
-            "results": None
+            "results": None,
+            "final_score": None
         }
 
 
@@ -74,7 +76,7 @@ def validate_option_input(user_input, user_range):
     return True
 
 
-def main_menu():
+def main_menu(current_user):
     """
     Display the main menu to the user and action there
     option choice
@@ -88,14 +90,18 @@ def main_menu():
         response = input("Please select an option [1 - 3]: ")
         valid_input = valid_input = validate_option_input(response, 3)
     if response == "1":
-        question_user(questionnaire_details)
+        if current_user is None:
+            initialise_user()
 
 
 def initialise_user():
     """
     Create user instance and call questionnaire
     """
-    current_user = User(None, {},)
+    current_user = User(None)
+    current_user.session_results["date"] = datetime.now().date()
+    print("date " + current_user.session_results["date"])
+    question_user(current_user)
 
 
 def store_results(user_results):
@@ -106,19 +112,20 @@ def store_results(user_results):
     user_sheet.append_row(user_results)
 
 
-def results(responses):
+def results(current_user):
     """
     Calculate co2 score and inform user
     """
-    result = sum(responses)
+    user_results = current_user.session_results["results"]
+    current_user.session_results["final_score"] = sum(user_results)
     gui.terminal_control("clear_screen")
-    print(f"Your carbon footprint score is {result}")
+    print(f"Your carbon footprint score is {user_results}")
     print(questionnaire_details["summary"] + "\n\n")
     input("Press Enter to continue.....")
-    store_data(result)
+    store_data(current_user)
 
 
-def question_user(questionnaire_details):
+def question_user(current_user):
     """
     Recall each question from the questionnaire sequentially,
     display the question to the user and record their
@@ -138,7 +145,8 @@ def question_user(questionnaire_details):
             response = input(f"Please select an option [1 - {num}]: ")
             valid_input = validate_option_input(response, num)
         responses.append(int(question.options[int(response) - 1]["score"]))
-    results(responses)
+    current_user.session_results["results"] = responses
+    results(current_user)
 
 
 def create_user_id():
@@ -204,7 +212,7 @@ def main():
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
     # time.sleep(3)
-    main_menu()
+    main_menu(None)
     # pprint(questionnaire_details)
     # print(questionnaire_details["questions"][0].question_info)
     # print(questionnaire_details["summary"])
