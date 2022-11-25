@@ -81,20 +81,41 @@ def main_menu(current_user):
     Display the main menu to the user and action there
     option choice
     """
-    gui.terminal_control("clear_screen")
-    print("1. Start the questionnaire\n")
-    print("2. View instructions\n")
-    print("3. Exit software\n")
     valid_input = False
     while valid_input is False:
-        response = input("Please select an option [1 - 3]: ")
-        valid_input = valid_input = validate_option_input(response, 3)
+        gui.terminal_control("clear_screen")
+        if current_user is not None and current_user.user_id is not None:
+            print(f"User logged in: {current_user.user_id}\n")
+        print("1. Start the questionnaire\n")
+        print("2. View instructions\n")
+        print("3. Exit software\n")
+        if current_user is not None and current_user.user_id is not None:
+            print("4. Log out\n")
+            menu_range = 4
+        else:
+            menu_range = 3
+        response = input(f"Please select an option [1 - {menu_range}]: ")
+        valid_input = valid_input = validate_option_input(response, menu_range)
     if response == "1":
         if current_user is None:
             current_user = initialise_user()
             question_user(current_user)
-        elif response == "3":
-            sys.exit()
+    elif response == "3":
+        sys.exit()
+    elif response == "4":
+        log_out(current_user)
+
+
+def log_out(current_user):
+    """
+    Delete the current user variable and its data
+    then return to the main menu
+    """
+    del current_user
+    gui.terminal_control("clear_screen")
+    print("You have been logged out")
+    time.sleep(3)
+    main_menu(None)
 
 
 def initialise_user():
@@ -119,6 +140,7 @@ def store_results(current_user):
     sheet_data.append(str(current_user.session_results["final_score"]))
     user_sheet = CO2_SHEET.worksheet("co2_scores")
     user_sheet.append_row(sheet_data)
+    main_menu(current_user)
 
 
 def results(current_user):
@@ -142,9 +164,9 @@ def question_user(current_user):
     """
     responses = []
     for question in questionnaire_details["questions"]:
-        gui.terminal_control("clear_screen")
         valid_input = False
         while valid_input is False:
+            gui.terminal_control("clear_screen")
             print(question.question_info)
             ind = 1
             for option in question.options:
@@ -169,6 +191,12 @@ def create_user_id():
     for x in range(5):
         user_id_list.append(random.choice(num_char_pool))
     user_id = "".join(user_id_list)
+    gui.terminal_control("clear_screen")
+    print("If you use this tool again the user id can be used to load")
+    print("this sessions data for comparison. Keep it safe it cannot")
+    print("be retrieved if lost\n")
+    print(f"Your user id is: {user_id}\n")
+    input("Press Enter to continue when ready .....")
     return user_id
 
 
