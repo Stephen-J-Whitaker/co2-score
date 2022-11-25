@@ -28,6 +28,8 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 CO2_SHEET = GSPREAD_CLIENT.open('co2_score')
 # Code Institute code ends here
 
+questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
+
 
 class User():
     """
@@ -59,7 +61,7 @@ def validate_option_input(user_input, user_range):
                 "The value entered was out of range"
             )
     except ValueError as error:
-        print(gui.terminal_command["clear_screen"])
+        gui.terminal_control("clear_screen")
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {user_range}")
         print("Please try again")
@@ -67,6 +69,43 @@ def validate_option_input(user_input, user_range):
         return False
 
     return True
+
+
+def main_menu():
+    """
+    Display the main menu to the user and action there
+    option choice
+    """
+    gui.terminal_control("clear_screen")
+    print("1. Start the questionnaire\n")
+    print("2. View instructions\n")
+    print("3. Exit software\n")
+    valid_input = False
+    while valid_input is False:
+        response = input(f"Please select an option [1 - 3]: ")
+        valid_input = valid_input = validate_option_input(response, 3)
+    if response == "1":
+        question_user(questionnaire_details)
+
+
+def store_results(user_results):
+    """
+    Put user data in external spreadsheet
+    """
+    user_sheet = CO2_SHEET.worksheet("co2_scores")
+    user_sheet.append_row(user_results)
+
+
+def results(responses):
+    """
+    Calculate co2 score and inform user
+    """
+    result = sum(responses)
+    gui.terminal_control("clear_screen")
+    print(f"Your carbon footprint score is {result}")
+    print(questionnaire_details["summary"] + "\n\n")
+    input("Press Enter to continue.....")
+    store_data(result)
 
 
 def question_user(questionnaire_details):
@@ -89,19 +128,7 @@ def question_user(questionnaire_details):
             response = input(f"Please select an option [1 - {num}]: ")
             valid_input = validate_option_input(response, num)
         responses.append(int(question.options[int(response) - 1]["score"]))
-    return responses
-
-
-def results(responses, questionnaire_details):
-    """
-    Calculate co2 score and inform user
-    """
-    result = sum(responses)
-    gui.terminal_control("clear_screen")
-    print(f"Your carbon footprint score is {result}")
-    print(questionnaire_details["summary"] + "\n\n")
-    input("Press Enter to continue.....")
-    return result
+    results(responses)
 
 
 def create_user_id():
@@ -130,7 +157,7 @@ def validate_yes_no(user_input, valid_range):
                 'Please enter either "y" for yes or "n" for no'
             )
     except ValueError as error:
-        print(gui.terminal_command["clear_screen"])
+        gui.terminal_control("clear_screen")
         print(f"Data invalid: {error}")
         print("Please try again")
         input("Press Enter to continue.....")
@@ -158,14 +185,6 @@ def store_data(total_score):
     
 
 
-def store_results(user_results):
-    """
-    Put user data in external spreadsheet
-    """
-    user_sheet = CO2_SHEET.worksheet("co2_scores")
-    user_sheet.append_row(user_results)
-
-
 def main():
     """
     Run all program functions
@@ -175,10 +194,7 @@ def main():
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
     # time.sleep(3)
-    questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
-    responses = question_user(questionnaire_details)
-    total_score = results(responses, questionnaire_details)
-    store_data(total_score)
+    main_menu()
     # pprint(questionnaire_details)
     # print(questionnaire_details["questions"][0].question_info)
     # print(questionnaire_details["summary"])
