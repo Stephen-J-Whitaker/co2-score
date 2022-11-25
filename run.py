@@ -27,7 +27,7 @@ CO2_SHEET = GSPREAD_CLIENT.open('co2_score')
 # Code Institute code ends here
 
 
-def validate_input(input, range):
+def validate_option_input(input, range):
     """
     Confirm that the user input is in range and
     is numeric.
@@ -67,7 +67,7 @@ def question_user(questionnaire_details):
                 ind += 1
             num = len(question.options)
             response = input(f"Please select an option [1 - {num}]: ")
-            valid_input = validate_input(response, num)
+            valid_input = validate_option_input(response, num)
         responses.append(int(question.options[int(response) - 1]["score"]))
     return responses
 
@@ -80,7 +80,18 @@ def results(responses, questionnaire_details):
     gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {result}")
     print(questionnaire_details["summary"] + "\n\n")
+    input("Press Enter to continue.....")
     return result
+
+
+def create_user_id():
+    """
+    Ask the user if they would like to store their results
+    and take appropraite action to their response
+    """
+    print("Would you like your results to be stored?")
+    user_input = input('Please enter "Y" for Yes and "N" for No: ')
+    validate_yes_no(user_input)
 
 
 def store_results(user_results):
@@ -96,10 +107,10 @@ def main():
     Run all program functions
     """
     gui.set_gui_background("assets/images/gui_world.bmp")
-    time.sleep(3)
+    # time.sleep(3)
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
-    time.sleep(3)
+    # time.sleep(3)
     questionnaire_details = questionnaire.get_questionnaire(CO2_SHEET)
     responses = question_user(questionnaire_details)
     total_score = results(responses, questionnaire_details)

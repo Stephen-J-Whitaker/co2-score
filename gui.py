@@ -7,6 +7,7 @@ from numpy import asarray
 from colorama import Fore, Back, Style
 
 # Map bitmap pixel colours to equivalent escape characters
+# \u2588 fills a whole character cell 
 colour_map = {
     "(0, 0, 0)": "\033[40;30m\u2588",  # black
     "(255, 0, 0)": "\033[41;31m\u2588",  # red
@@ -24,13 +25,14 @@ terminal_command = {
     "hide_cursor": "\033[?25l",
     "show_cursor": "\033[?25h",
     "cursor_home": "\033[H",
-    "text_blue": "\033[34m",
-    "text_white": "\033[37m"
+    "text_blue": "\033[44;34m",
+    "text_white": "\033[37m\u2588"
 }
 
 
 title = [
     # Put cursor home for set style and colour else renders in wrong place
+    # Title created in ASCII Art generator https://patorjk.com/software/taag/
     Back.BLUE + Fore.WHITE + Style.BRIGHT + "\033[H",
     "\033[5;20H         ██████╗ ██████╗ ██████╗", 
     "\033[6;20H        ██╔════╝██╔═══██╗╚════██╗",
@@ -63,7 +65,7 @@ def terminal_control(command):
     Takes a passed command and prints required
     escape character to screen to action the command
     """
-    print(terminal_command[command])
+    print(terminal_command[command], end="")
 
 
 def open_image(image_name):
