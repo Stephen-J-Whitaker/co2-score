@@ -7,6 +7,7 @@ import time
 import sys
 import string
 import random
+import re
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
@@ -49,9 +50,13 @@ class PreviousUser(User):
     """
     Creates a user instance with addition of previous results
     """
-    def __init__(self, user_id, previous_results):
+    def __init__(self, user_id):
         super().__init__(user_id)
-        self.previous_results = previous_results
+        self.previous_results = {
+            "date": None,
+            "results": None,
+            "final_score": None
+        }
 
 
 def validate_option_input(user_input, user_range):
@@ -70,7 +75,7 @@ def validate_option_input(user_input, user_range):
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {user_range}")
         print("Please try again")
-        input("Press Enter to continue.....")
+        input("Press Enter to try again")
         return False
 
     return True
@@ -95,11 +100,11 @@ def main_menu(current_user):
         else:
             menu_range = 3
         response = input(f"Please select an option [1 - {menu_range}]: ")
-        valid_input = valid_input = validate_option_input(response, menu_range)
+        valid_input = validate_option_input(response, menu_range)
     if response == "1":
         if current_user is None:
-            current_user = initialise_user()
-            question_user(current_user)
+            current_user = load_user(current_user)
+        question_user(current_user)
     elif response == "3":
         print(Style.RESET_ALL)
         gui.terminal_control("clear_screen")
@@ -128,6 +133,58 @@ def initialise_user():
     current_user = User(None)
     date = datetime.now().date().strftime("%d-%m-%Y")
     current_user.session_results["date"] = date
+    return current_user
+
+
+def validate_user_id_entry(user_id, current_user):
+    """
+    Validate user id entry
+    """
+    try:
+        if user_id is not re.match(r'^[a-zA-Z0-9]{5}$', user_id):
+            raise ValueError("The entered value must be 5 characters\n"
+                             "You entered " + len(user_id) + " characters")
+    except ValueError as error:
+        gui.terminal_control("clear_screen")
+        print(f"User data invalid: {error}")
+        print("Please type in a 5 characte alphanumeric user id")
+        print("Please try again")
+        user_input = input('Press Enter to try again '
+                           'or "q" to start the quesionnaire')
+        if user_input.lower() == "q":
+            question_user(current_user)
+        return False
+
+    return True
+
+
+def load_user(current_user):
+    """
+    Request entry of user id
+    """
+    if current_user is None:
+        valid_user_id = False
+        while valid_user_id is False:
+            print("If you have a user id to retrieve previous data,")
+            user_id = input("please enter it now or press enter to continue: ")
+            if user_id == "":
+                current_user = initialise_user()
+            else:
+                valid_user_id = validate_user_id_entry(user_id, current_user)
+                co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
+                cell = co2_scores_sheet.find(user_id)
+                previous_results_row = co2_scores_sheet.row_values(cell.row)
+                print("previous scores = " + previous_results_row)
+                current_user.previous_results["date"] = previous_results_row[1]
+                previous_results = []
+                for result in range(2, 13):
+                    previous_results.append(result)
+                current_user.previous_results["results"] = previous_results
+                final_score = previous_results_row[14]
+                current_user.previous_results["final_score"] = final_score
+                current_user = PreviousUser(valid_user_id)
+                date = datetime.now().date().strftime("%d-%m-%Y")
+                current_user.session_results["date"] = date
     return current_user
 
 
@@ -217,7 +274,7 @@ def validate_yes_no(user_input, valid_range):
         gui.terminal_control("clear_screen")
         print(f"Data invalid: {error}")
         print("Please try again")
-        input("Press Enter to continue.....")
+        input("Press Enter to try again")
         return False
 
     return True
