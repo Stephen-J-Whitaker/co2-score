@@ -141,16 +141,21 @@ def validate_user_id_entry(user_id, current_user, cell):
     Validate user id entry
     """
     try:
-        if user_id is not re.match(r'^[a-zA-Z0-9]{5}$', user_id):
-            raise ValueError("The entered value must be 5 characters\n"
-                             "You entered " + len(user_id) + " characters")
-        if cell is None:
+        if user_id.isalnum() is False:
+            raise ValueError("The entered "
+                             "value must be 5 alphanumeric characters\n"
+                             "You entered non valid characters.")
+        elif len(user_id) != 5:
+            raise ValueError("The entered "
+                             "value must be 5 alphanumeric characters\n"
+                             f"You entered {len(user_id)} characters.")
+        elif cell is None:
             raise ValueError("The user id cannot be found.")
     except ValueError as error:
         gui.terminal_control("clear_screen")
         print(f"User data invalid: {error}")
         user_input = input('Press Enter to try again '
-                           'or "q" to start the quesionnaire')
+                           'or "q" to start the quesionnaire: ')
         if user_input.lower() == "q":
             question_user(current_user)
         return False
@@ -168,14 +173,16 @@ def load_user(current_user):
             print("If you have a user id to retrieve previous data,")
             user_id = input("please enter it now or press enter to continue: ")
             if user_id == "":
+                valid_user_id = True
                 current_user = initialise_user()
+                return current_user
             else:
                 co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
                 cell = co2_scores_sheet.find(user_id)
                 valid_user_id = validate_user_id_entry(user_id,
                                                        current_user, cell)
         previous_results_row = co2_scores_sheet.row_values(cell.row)
-        print("previous scores = " + previous_results_row)
+        print(f"previous scores = {previous_results_row}")
         current_user.previous_results["date"] = previous_results_row[1]
         previous_results = []
         for result in range(2, 13):
@@ -274,7 +281,6 @@ def validate_range(user_input, valid_range):
     except ValueError as error:
         gui.terminal_control("clear_screen")
         print(f"Data invalid: {error}")
-        print("Please try again")
         input("Press Enter to try again")
         return False
 
