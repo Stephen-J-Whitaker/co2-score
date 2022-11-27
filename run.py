@@ -96,16 +96,17 @@ def main_menu(current_user):
         print("1. Start the questionnaire\n")
         print("2. View instructions\n")
         print("3. Exit software\n")
+        print("4. Administer data\n")
         if current_user is not None and current_user.user_id is not None:
-            print("4. Log out\n")
-            menu_range = 4
+            print("5. Log out\n")
+            menu_range = 5
         else:
-            menu_range = 3
+            menu_range = 4
         response = input(f"Please select an option [1 - {menu_range}]: ")
         valid_input = validate_option_input(response, menu_range)
     if response == "1":
         if current_user is None:
-            current_user = load_user(current_user)
+            current_user = load_user(current_user, "questions")
         question_user(current_user)
     elif response == "3":
         print(Style.RESET_ALL)
@@ -113,7 +114,41 @@ def main_menu(current_user):
         gui.terminal_control("cursor_home")
         sys.exit()
     elif response == "4":
+        administer_data(current_user)
+    elif response == "5":
         log_out(current_user)
+
+
+def administer_data(current_user):
+    """
+    Enable users with a user id to administer their data
+    """
+    if current_user is None:
+        print(f"current_user = {current_user}")
+        current_user = load_user(current_user, "main_menu")
+        print(f"current_user = {current_user}")
+        input(waiting)
+    valid_response = False
+    while valid_response is False:
+        print("1. Review previous score")
+        print("2. Delete data")
+        print("3. Return to main menu")
+        response = input("Please select an option [1 - 3]: ")
+        valid_response = validate_option_input(response, 3)
+    if response == "1":
+        previous_score = current_user.previous_results["final_score"]
+        print(f"Your previous score was {previous_score}")
+        input("Press enter to continue.....")
+        administer_data(current_user)
+    elif response == "2":
+        co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
+        print(current_user.user_id)
+        cell = co2_scores_sheet.find(current_user.user_id)
+        co2_scores_sheet.delete_rows(cell.row)
+        input("Your data has been deleted. Press enter to continue.....")
+        log_out(current_user)
+    elif response == "3":
+        main_menu(current_user)
 
 
 def log_out(current_user):
@@ -138,7 +173,7 @@ def initialise_user():
     return current_user
 
 
-def validate_user_id_entry(user_id, current_user, cell):
+def validate_user_id_entry(user_id, current_user, cell, option):
     """
     Validate user id entry
     """
@@ -156,16 +191,18 @@ def validate_user_id_entry(user_id, current_user, cell):
     except ValueError as error:
         gui.terminal_control("clear_screen")
         print(f"User data invalid: {error}")
-        user_input = input('Press Enter to try again '
-                           'or "q" to start the quesionnaire: ')
-        if user_input.lower() == "q":
+        if option == "main_menu":
+            user_input = input('Press Enter to .....')
+            main_menu(current_user)
+        elif option == "questions":
             question_user(current_user)
-        return False
+        elif user_input == "":
+        return False        if user_input.lower() == "c":
 
     return True
 
 
-def load_user(current_user):
+def load_user(current_user, option):
     """
     Request entry of user id
     """
@@ -175,14 +212,18 @@ def load_user(current_user):
             print("If you have a user id to retrieve previous data,")
             user_id = input("please enter it now or press enter to continue: ")
             if user_id == "":
-                valid_user_id = True
-                current_user = initialise_user()
-                return current_user
+                if option == "questions":
+                    valid_user_id = True
+                    current_user = initialise_user()
+                    return current_user
+                elif option == "main_menu":
+                    return main_menu(current_user)
             else:
                 co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
                 cell = co2_scores_sheet.find(user_id)
                 valid_user_id = validate_user_id_entry(user_id,
-                                                       current_user, cell)
+                                                       current_user,
+                                                       cell, option)
         previous_results_row = co2_scores_sheet.row_values(cell.row)
         current_user = PreviousUser(valid_user_id)
         current_user.previous_results["date"] = previous_results_row[1]
