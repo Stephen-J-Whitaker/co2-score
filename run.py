@@ -39,6 +39,7 @@ class User():
     """
     def __init__(self, user_id):
         self.user_id = user_id
+        self.previous_user = False
         self.session_results = {
             "date": None,
             "results": None,
@@ -52,6 +53,7 @@ class PreviousUser(User):
     """
     def __init__(self, user_id):
         super().__init__(user_id)
+        self.previous_user = True
         self.previous_results = {
             "date": None,
             "results": None,
@@ -182,7 +184,7 @@ def load_user(current_user):
                 valid_user_id = validate_user_id_entry(user_id,
                                                        current_user, cell)
         previous_results_row = co2_scores_sheet.row_values(cell.row)
-        print(f"previous scores = {previous_results_row}")
+        current_user = PreviousUser(valid_user_id)
         current_user.previous_results["date"] = previous_results_row[1]
         previous_results = []
         for result in range(2, 13):
@@ -190,9 +192,10 @@ def load_user(current_user):
         current_user.previous_results["results"] = previous_results
         final_score = previous_results_row[14]
         current_user.previous_results["final_score"] = final_score
-        current_user = PreviousUser(valid_user_id)
         date = datetime.now().date().strftime("%d-%m-%Y")
         current_user.session_results["date"] = date
+        print(f"previous scores = {previous_results_row}")
+        input("waiting")
     return current_user
 
 
@@ -220,6 +223,10 @@ def results(current_user):
     gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {user_results}")
     print(questionnaire_details["summary"] + "\n\n")
+    if current_user.previous_user is True:
+        previous_date = current_user.previous_results["date"]
+        previous_score = current_user.previous_results["final_score"]
+        print(f"Your previous score on {previous_date} was {previous_score}\n")
     input("Press Enter to continue.....")
     store_data(current_user)
 
@@ -292,18 +299,21 @@ def store_data(current_user):
     Ask the user if they would like to store their results
     and take appropraite action to their response
     """
-    valid_input = False
-    while valid_input is False:
-        print("Would you like your results to be stored?")
-        user_input = input('Please enter "y" for Yes and "n" for No: ')
-        user_input.lower()
-        valid_input = validate_range(user_input, ["y", "n"])
-    if user_input == "n":
-        del current_user
-        main_menu(None)
+    if current_user.previous_user is False:
+        valid_input = False
+        while valid_input is False:
+            print("Would you like your results to be stored?")
+            user_input = input('Please enter "y" for Yes and "n" for No: ')
+            user_input.lower()
+            valid_input = validate_range(user_input, ["y", "n"])
+        if user_input == "n":
+            del current_user
+            main_menu(None)
+        else:
+            user_id = create_user_id()
+            current_user.user_id = user_id
+            store_results(current_user)
     else:
-        user_id = create_user_id()
-        current_user.user_id = user_id
         store_results(current_user)
 
 
