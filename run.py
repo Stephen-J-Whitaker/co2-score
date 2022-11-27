@@ -136,7 +136,7 @@ def initialise_user():
     return current_user
 
 
-def validate_user_id_entry(user_id, current_user):
+def validate_user_id_entry(user_id, current_user, cell):
     """
     Validate user id entry
     """
@@ -144,11 +144,11 @@ def validate_user_id_entry(user_id, current_user):
         if user_id is not re.match(r'^[a-zA-Z0-9]{5}$', user_id):
             raise ValueError("The entered value must be 5 characters\n"
                              "You entered " + len(user_id) + " characters")
+        if cell is None:
+            raise ValueError("The user id cannot be found.")
     except ValueError as error:
         gui.terminal_control("clear_screen")
         print(f"User data invalid: {error}")
-        print("Please type in a 5 characte alphanumeric user id")
-        print("Please try again")
         user_input = input('Press Enter to try again '
                            'or "q" to start the quesionnaire')
         if user_input.lower() == "q":
@@ -170,21 +170,22 @@ def load_user(current_user):
             if user_id == "":
                 current_user = initialise_user()
             else:
-                valid_user_id = validate_user_id_entry(user_id, current_user)
                 co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
                 cell = co2_scores_sheet.find(user_id)
-                previous_results_row = co2_scores_sheet.row_values(cell.row)
-                print("previous scores = " + previous_results_row)
-                current_user.previous_results["date"] = previous_results_row[1]
-                previous_results = []
-                for result in range(2, 13):
-                    previous_results.append(result)
-                current_user.previous_results["results"] = previous_results
-                final_score = previous_results_row[14]
-                current_user.previous_results["final_score"] = final_score
-                current_user = PreviousUser(valid_user_id)
-                date = datetime.now().date().strftime("%d-%m-%Y")
-                current_user.session_results["date"] = date
+                valid_user_id = validate_user_id_entry(user_id,
+                                                       current_user, cell)
+        previous_results_row = co2_scores_sheet.row_values(cell.row)
+        print("previous scores = " + previous_results_row)
+        current_user.previous_results["date"] = previous_results_row[1]
+        previous_results = []
+        for result in range(2, 13):
+            previous_results.append(result)
+        current_user.previous_results["results"] = previous_results
+        final_score = previous_results_row[14]
+        current_user.previous_results["final_score"] = final_score
+        current_user = PreviousUser(valid_user_id)
+        date = datetime.now().date().strftime("%d-%m-%Y")
+        current_user.session_results["date"] = date
     return current_user
 
 
@@ -260,15 +261,15 @@ def create_user_id():
     return user_id
 
 
-def validate_yes_no(user_input, valid_range):
+def validate_range(user_input, valid_range):
     """
-    Check if the users response was y or n (or Y and N)
+    Check if the users response was in letter range
     and raise ValueError if not
     """
     try:
         if user_input not in valid_range:
             raise ValueError(
-                'Please enter either "y" for yes or "n" for no'
+                f'Please enter either "{valid_range[0]}" or "{valid_range[1]}"'
             )
     except ValueError as error:
         gui.terminal_control("clear_screen")
@@ -290,7 +291,7 @@ def store_data(current_user):
         print("Would you like your results to be stored?")
         user_input = input('Please enter "y" for Yes and "n" for No: ')
         user_input.lower()
-        valid_input = validate_yes_no(user_input, ["y", "n"])
+        valid_input = validate_range(user_input, ["y", "n"])
     if user_input == "n":
         del current_user
         main_menu(None)
