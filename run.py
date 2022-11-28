@@ -7,6 +7,7 @@ import time
 import sys
 import string
 import random
+import copy
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
@@ -286,7 +287,7 @@ def store_results(current_user):
     # Make previous results current results only if user wasn't a previous user
     # before this session
     if current_user.previous_user is False:
-        current_user.previous_results = current_user.session_results
+        current_user.previous_results = copy.deepcopy(current_user.session_results)
         # Make previous user True in case saved for first time
         current_user.previous_user = True
     main_menu(current_user)
