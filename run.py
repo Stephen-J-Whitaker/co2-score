@@ -315,8 +315,8 @@ def question_user(current_user):
     responses into a variable
     """
     responses = []
+    max_total = 0
     for question in questionnaire_details["questions"]:
-        max_total = 0
         valid_input = False
         while valid_input is False:
             gui.terminal_control("clear_screen")
@@ -337,9 +337,9 @@ def question_user(current_user):
         max_total += int(max_poss_score)
         responses.append(score)
         gui.terminal_control("clear_screen")
-        print(f"\033[5;4HYou chose option '{option_chosen}'.", end="")
+        print(f"\033[5;4HYou chose option:\033[6;4H'{option_chosen}'.", end="")
         print(f"\033[7;4H{score} points have been added to your carbon score")
-        bar_chart(current_user, score, max_poss_score)
+        # bar_chart(current_user, score, max_poss_score)
     current_user.session_results["results"] = responses
     results(current_user, max_total)
 
@@ -347,11 +347,20 @@ def question_user(current_user):
 def bar_chart(current_user, score, max_score):
     """
     Show the users response as a proportion of highest possible
-    score in the form of a bar chart and show comparison to any 
+    score in the form of a bar chart and show comparison to any
     present previous results
     """
+    # Scale down max_total and score to fit on bar chart when necessary
+    if max_score > 55:
+        max_score_scaled = max_score / 4
+        user_results_scaled = score / 4
+    else:
+        max_score_scaled = max_score
+        user_results_scaled = score
     bar_chart_string = "\033[9;13H"
-    proportion = (round(55 / int(max_score))) * score
+    print(f"bar score = {score}")
+    input("waiting")
+    proportion = (round(55 / int(max_score_scaled))) * user_results_scaled
     for i in range(55):
         if i < proportion:
             bar_chart_string += "\033[42;32m\u2588"
