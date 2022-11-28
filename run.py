@@ -93,8 +93,8 @@ def main_menu(current_user):
         gui.terminal_control("clear_screen")
         if current_user is not None and current_user.user_id is not None:
             print(f"User logged in: {current_user.user_id}\n")
-        print("1. Start the questionnaire\n")
-        print("2. View instructions\n")
+        print("1. View instructions\n")
+        print("2. Start the questionnaire\n")
         print("3. Exit software\n")
         print("4. Administer data\n")
         if current_user is not None and current_user.user_id is not None:
@@ -105,6 +105,8 @@ def main_menu(current_user):
         response = input(f"Please select an option [1 - {menu_range}]: ")
         valid_input = validate_option_input(response, menu_range)
     if response == "1":
+        instructions(current_user)
+    elif response == "2":
         if current_user is None:
             current_user = load_user(current_user, "questions")
         question_user(current_user)
@@ -117,6 +119,29 @@ def main_menu(current_user):
         administer_data(current_user)
     elif response == "5":
         log_out(current_user)
+
+
+def instructions(current_user):
+    """
+    Display instructions and then go to questionnaire
+    or back to main menu
+    """
+    gui.terminal_control("clear_screen")
+    print("Instructions\n")
+    print(questionnaire_details["Instructions"])
+    print("\n")
+    valid_response = False
+    while valid_response is False:
+        print("1. Continue to questionnaire")
+        print("2. Return to main menu")
+        user_choice = input("Please enter an option [1 or 2]")
+        valid_response = validate_option_input(user_choice, 2)
+    if user_choice == "1":
+        if current_user is None:
+            current_user = load_user(current_user, "questions")
+        question_user(current_user)
+    elif user_choice == "2":
+        return main_menu(current_user)
 
 
 def administer_data(current_user):

@@ -49,7 +49,9 @@ def get_questionnaire(co2_sheet):
     questions = []
     questionnaire = {}
     for row in questionnaire_raw:
-        if "Step" in row[0]:
+        if "Instructions" in row[0]:
+            questionnaire["Instructions"] = string_wrap(row[1])
+        elif "Step" in row[0]:
             if first_step is True:
                 first_step = False
             else:
