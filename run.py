@@ -271,7 +271,8 @@ def store_results(current_user):
     """
     sheet_data = []
     sheet_data.append(current_user.user_id)
-    sheet_data.append(current_user.session_results["date"])
+    date = datetime.now().date().strftime("%d-%m-%Y")
+    sheet_data.append(date)
     for data in current_user.session_results["results"]:
         sheet_data.append(data)
     sheet_data.append(str(current_user.session_results["final_score"]))
