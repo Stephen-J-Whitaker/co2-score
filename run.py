@@ -286,11 +286,10 @@ def store_results(current_user):
         user_sheet.update(sheet_range, update_data)
     # Make previous results current results only if user wasn't a previous user
     # before this session
-    if current_user.previous_user is False:
-        previous_results = copy.deepcopy(current_user.session_results)
-        current_user.previous_results = previous_results
-        # Make previous user True in case saved for first time
-        current_user.previous_user = True
+    previous_results = copy.deepcopy(current_user.session_results)
+    current_user.previous_results = previous_results
+    # Make previous user True in case saved for first time
+    current_user.previous_user = True
     main_menu(current_user)
 
 
@@ -347,6 +346,7 @@ def question_user(current_user):
         if current_user.previous_user is True:
             score = current_user.previous_results["results"][index]
             bar_chart(current_user, score, max_poss_score, "previous")
+            input("\033[23;1HPress enter to continue.....")
         index += 1
     current_user.session_results["results"] = responses
     results(current_user, max_total)
