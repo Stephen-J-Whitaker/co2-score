@@ -124,12 +124,10 @@ def administer_data(current_user):
     Enable users with a user id to administer their data
     """
     if current_user is None:
-        print(f"current_user = {current_user}")
         current_user = load_user(current_user, "main_menu")
-        print(f"current_user = {current_user}")
-        input(waiting)
     valid_response = False
     while valid_response is False:
+        print(f"User logged in: {current_user.user_id}\n")
         print("1. Review previous score")
         print("2. Delete data")
         print("3. Return to main menu")
@@ -142,9 +140,9 @@ def administer_data(current_user):
         administer_data(current_user)
     elif response == "2":
         co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
-        print(current_user.user_id)
         cell = co2_scores_sheet.find(current_user.user_id)
         co2_scores_sheet.delete_rows(cell.row)
+        gui.terminal_control("clear_screen")
         input("Your data has been deleted. Press enter to continue.....")
         log_out(current_user)
     elif response == "3":
@@ -159,7 +157,7 @@ def log_out(current_user):
     del current_user
     gui.terminal_control("clear_screen")
     print("You have been logged out")
-    time.sleep(3)
+    input("Press enter to continue.....")
     main_menu(None)
 
 
@@ -192,12 +190,14 @@ def validate_user_id_entry(user_id, current_user, cell, option):
         gui.terminal_control("clear_screen")
         print(f"User data invalid: {error}")
         if option == "main_menu":
-            user_input = input('Press Enter to .....')
+            user_input = input('Press Enter to continue.....')
             main_menu(current_user)
         elif option == "questions":
-            question_user(current_user)
-        elif user_input == "":
-        return False        if user_input.lower() == "c":
+            user_input = input('Press Enter to try again '
+                               'or "q" to start the quesionnaire: ')
+            if user_input.lower() == "q":
+                question_user(current_user)
+        return False
 
     return True
 
@@ -225,7 +225,8 @@ def load_user(current_user, option):
                                                        current_user,
                                                        cell, option)
         previous_results_row = co2_scores_sheet.row_values(cell.row)
-        current_user = PreviousUser(valid_user_id)
+        print(f"valid_user_id = {user_id}")
+        current_user = PreviousUser(user_id)
         current_user.previous_results["date"] = previous_results_row[1]
         previous_results = []
         for result in range(2, 13):
@@ -235,8 +236,6 @@ def load_user(current_user, option):
         current_user.previous_results["final_score"] = final_score
         date = datetime.now().date().strftime("%d-%m-%Y")
         current_user.session_results["date"] = date
-        print(f"previous scores = {previous_results_row}")
-        input("waiting")
     return current_user
 
 
@@ -251,7 +250,19 @@ def store_results(current_user):
         sheet_data.append(data)
     sheet_data.append(str(current_user.session_results["final_score"]))
     user_sheet = CO2_SHEET.worksheet("co2_scores")
-    user_sheet.append_row(sheet_data)
+    if current_user.previous_user is False:
+        user_sheet.append_row(sheet_data)
+    elif current_user.previous_user is True:
+        cell = user_sheet.find(current_user.user_id)
+        sheet_range = "A" + str(cell.row) + ":O" + str(cell.row)
+        print(f"range = {sheet_range}")
+        print(f"sheet data = {sheet_data}")
+        update_data = []
+        update_data.append(sheet_data)
+        print(f"update_data = {update_data}")
+        input("waiting")
+        user_sheet.update(sheet_range, update_data)
+        input("waiting")
     main_menu(current_user)
 
 
