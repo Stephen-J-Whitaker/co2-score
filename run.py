@@ -103,7 +103,7 @@ def main_menu(current_user):
             menu_range = 5
         else:
             menu_range = 4
-        response = input(f"\033[1CPlease select an option [1 - {menu_range}]: ")
+        response = input(f"\033[1CPlease select an option [1-{menu_range}]: ")
         valid_input = validate_option_input(response, menu_range)
     if response == "1":
         instructions(current_user)
@@ -131,7 +131,7 @@ def instructions(current_user):
     while valid_response is False:
         gui.terminal_control("clear_screen")
         print("\033[1CInstructions\n")
-        print(questionnaire_details["Instructions"])
+        print(f'\033[1C{questionnaire_details["Instructions"]}')
         print("\n")
         print("\033[1C1. Continue to questionnaire")
         print("\033[1C2. Return to main menu")
@@ -153,11 +153,12 @@ def administer_data(current_user):
         current_user = load_user(current_user, "main_menu")
     valid_response = False
     while valid_response is False:
+        gui.terminal_control("clear_screen")
         print(f"\033[1CUser logged in: {current_user.user_id}\n")
         print("\033[1C1. Review previous score")
         print("\033[1C2. Delete data")
         print("\033[1C3. Return to main menu")
-        response = input("Please select an option [1 - 3]: ")
+        response = input("\033[1CPlease select an option [1 - 3]: ")
         valid_response = validate_option_input(response, 3)
     if response == "1":
         previous_score = current_user.previous_results["final_score"]
@@ -170,7 +171,7 @@ def administer_data(current_user):
         co2_scores_sheet.delete_rows(cell.row)
         gui.terminal_control("clear_screen")
         print("\033[1CYour data has been deleted")
-        input("\033[23;2HPress enter to continue.")
+        input("\033[23;2HPress enter to continue....")
         log_out(current_user)
     elif response == "3":
         main_menu(current_user)
@@ -233,12 +234,12 @@ def load_user(current_user, option):
     """
     Request entry of user id
     """
-    gui.terminal_control("clear_screen")
     if current_user is None:
         valid_user_id = False
         while valid_user_id is False:
+            gui.terminal_control("clear_screen")
             print("\033[1CIf you have a user id to retrieve previous data,")
-            user_id = input("\033[1Cplease enter it now or press enter to continue: ")
+            user_id = input("\033[1Center it now or press enter to continue: ")
             if user_id == "":
                 if option == "questions":
                     valid_user_id = True
@@ -257,8 +258,9 @@ def load_user(current_user, option):
         current_user = PreviousUser(user_id)
         current_user.previous_results["date"] = previous_results_row[1]
         previous_results = []
-        for result in range(2, 13):
-            previous_results.append(result)
+        for result in range(2, 14):
+            print(previous_results_row[result])
+            previous_results.append(int(previous_results_row[result]))
         current_user.previous_results["results"] = previous_results
         final_score = previous_results_row[14]
         current_user.previous_results["final_score"] = final_score
@@ -408,7 +410,7 @@ def create_user_id():
     num_pool = range(10)
     num_char_pool += [str(num) for num in num_pool]
     user_id_list = []
-    for x in range(5):
+    for index in range(5):
         user_id_list.append(random.choice(num_char_pool))
     user_id = "".join(user_id_list)
     gui.terminal_control("clear_screen")
@@ -428,7 +430,8 @@ def validate_range(user_input, valid_range):
     try:
         if user_input not in valid_range:
             raise ValueError(
-                f'\033[1CPlease enter either "{valid_range[0]}" or "{valid_range[1]}"'
+                '\033[1CPlease enter either'
+                f'"{valid_range[0]}" or "{valid_range[1]}"'
             )
     except ValueError as error:
         gui.terminal_control("clear_screen")
@@ -448,7 +451,7 @@ def store_data(current_user):
         valid_input = False
         while valid_input is False:
             print("\033[1CWould you like your results to be stored?")
-            user_input = input('\033[1CPlease enter "y" for Yes and "n" for No: ')
+            user_input = input('\033[1CPlease enter "y" or "n": ')
             user_input.lower()
             valid_input = validate_range(user_input, ["y", "n"])
         if user_input == "n":
