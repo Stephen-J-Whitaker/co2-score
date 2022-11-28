@@ -181,7 +181,7 @@ def log_out(current_user):
     """
     del current_user
     gui.terminal_control("clear_screen")
-    print("You have been logged out")
+    print("\033[10;1HYou have been logged out")
     input("\033[23;1HPress enter to continue.....")
     main_menu(None)
 
@@ -287,7 +287,8 @@ def store_results(current_user):
     # Make previous results current results only if user wasn't a previous user
     # before this session
     if current_user.previous_user is False:
-        current_user.previous_results = copy.deepcopy(current_user.session_results)
+        previous_results = copy.deepcopy(current_user.session_results)
+        current_user.previous_results = previous_results
         # Make previous user True in case saved for first time
         current_user.previous_user = True
     main_menu(current_user)
@@ -297,10 +298,6 @@ def results(current_user, max_total):
     """
     Calculate co2 score and inform user
     """
-    print(f"session results = {id(current_user.session_results)}")
-    if current_user.previous_user is True:
-        print(f"previous results = {id(current_user.previous_results)}")
-    input("waiting")
     user_results = sum(current_user.session_results["results"])
     current_user.session_results["final_score"] = user_results
     gui.terminal_control("clear_screen")
@@ -308,7 +305,7 @@ def results(current_user, max_total):
     print("\033[14;1H" + questionnaire_details["summary"] + "\n\n")
     bar_chart(current_user, user_results, max_total, "current")
     if current_user.previous_user is True:
-        previous_score = current_user.previous_results["final_score"]
+        previous_score = int(current_user.previous_results["final_score"])
         bar_chart(current_user, previous_score, max_total, "previous")
         input("\033[23;1HPress enter to continue.....")
     store_data(current_user)
@@ -322,6 +319,7 @@ def question_user(current_user):
     """
     responses = []
     max_total = 0
+    index = 0
     for question in questionnaire_details["questions"]:
         valid_input = False
         while valid_input is False:
@@ -345,10 +343,11 @@ def question_user(current_user):
         gui.terminal_control("clear_screen")
         print(f"\033[2;1HYou chose option:\n'{option_chosen}'")
         print(f"{score} points have been added to your carbon score")
-        # bar_chart(current_user, score, max_poss_score, "current")
+        bar_chart(current_user, score, max_poss_score, "current")
         if current_user.previous_user is True:
-            score = current_user.previous_results["final_score"]
-            # bar_chart(current_user, score, max_poss_score, "previous")
+            score = current_user.previous_results["results"][index]
+            bar_chart(current_user, score, max_poss_score, "previous")
+        index += 1
     current_user.session_results["results"] = responses
     results(current_user, max_total)
 
@@ -367,12 +366,12 @@ def bar_chart(current_user, score, max_score, session):
         max_score_scaled = max_score
         user_results_scaled = score
     if session == "current":
-        bar_chart_string = "\033[6;13H"
-        print(f"\033[5;1HYour score is {score}")
+        bar_chart_string = "\033[7;13H"
+        print(f"\033[6;1HYour score is {score}")
     elif session == "previous":
         previous_date = current_user.previous_results["date"]
-        print(f"\033[8;1HYour previous score on {previous_date} was {score}")
-        bar_chart_string = "\033[9;13H"
+        print(f"\033[9;1HYour previous score on {previous_date} was {score}")
+        bar_chart_string = "\033[10;13H"
     proportion = (round(55 / int(max_score_scaled))) * user_results_scaled
     for i in range(55):
         if i < proportion:
@@ -386,11 +385,11 @@ def bar_chart(current_user, score, max_score, session):
         else:
             bar_chart_string += "\033[47;30m\u2591"
     if session == "current":
-        print("\033[6;4HMin 0" + bar_chart_string)
-        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[6;70HMax {max_score}")
+        print("\033[7;4HMin 0" + bar_chart_string)
+        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[7;70HMax {max_score}")
     elif session == "previous":
-        print("\033[9;4HMin 0" + bar_chart_string)
-        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[9;70HMax {max_score}")
+        print("\033[10;4HMin 0" + bar_chart_string)
+        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[10;70HMax {max_score}")
     if current_user.previous_user is False:
         input("\033[23;1HPress enter to continue.....")
         gui.terminal_control("clear_screen")
