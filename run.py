@@ -321,15 +321,49 @@ def question_user(current_user):
             gui.terminal_control("clear_screen")
             print(question.question_info)
             ind = 1
+            option_list = []
             for option in question.options:
+                option_list.append(option["option_detail"])
                 print(f"{ind}. " + option["option_detail"])
                 ind += 1
             num = len(question.options)
             response = input(f"Please select an option [1 - {num}]: ")
             valid_input = validate_option_input(response, num)
-        responses.append(int(question.options[int(response) - 1]["score"]))
+            option_chosen = option_list[int(response) - 1]
+            score = int(question.options[int(response) - 1]["score"])
+            max_poss_score = str(question.max_poss_score)
+            print(f"max_poss_before = {max_poss_score}")
+            max_poss_score = max_poss_score.replace("Max possible score ", "")
+            print(f"max_poss_after = {max_poss_score}")
+            input("waiting")
+        responses.append(score)
+        bar_chart(current_user, option_chosen, score, max_poss_score)
     current_user.session_results["results"] = responses
     results(current_user)
+
+
+def bar_chart(current_user, response, score, max_score):
+    """
+    Show the users response as a proportion of highest possible
+    score in the form of a bar chart and show comparison to any 
+    present previous results
+    """
+    gui.terminal_control("clear_screen")
+    print(f"\033[5;4HYou chose option '{response}'.", end="")
+    print(f"\033[7;4H{score} points have been added to your carbon score")
+    bar_chart_string = "\033[9;13H"
+    proportion = (round(55 / 14)) * score
+    for i in range(55):
+        if i < proportion:
+            bar_chart_string += "\033[42;32m\u2588"
+        elif i == proportion:
+            bar_chart_string += "\033[42;30m\u2588"
+        else:
+            bar_chart_string += "\033[47;30m\u2591"
+    print("\033[9;4HMin 0" + bar_chart_string)
+    print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[9;70HMax {max_score}")
+    input("\n\nPress enter to continue.....")
+    gui.terminal_control("clear_screen")
 
 
 def create_user_id():
