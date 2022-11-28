@@ -21,7 +21,7 @@ colour_map = {
 
 # Terminal command to escape character map
 terminal_command = {
-    "clear_screen": "\033[2J",
+    "clear_screen": "\033[2J\033[2;0H",
     "hide_cursor": "\033[?25l",
     "show_cursor": "\033[?25h",
     "cursor_home": "\033[H",

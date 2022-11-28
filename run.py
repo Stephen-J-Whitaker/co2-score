@@ -76,7 +76,7 @@ def validate_option_input(user_input, user_range):
         print(f"Data invalid: {error}")
         print(f"Please select an option from 1 - {user_range}")
         print("Please try again")
-        input("Press Enter to try again")
+        input("\033[23;1HPress Enter to try again")
         return False
 
     return True
@@ -167,7 +167,7 @@ def administer_data(current_user):
         cell = co2_scores_sheet.find(current_user.user_id)
         co2_scores_sheet.delete_rows(cell.row)
         gui.terminal_control("clear_screen")
-        input("Your data has been deleted. Press enter to continue.....")
+        input("Your data has been deleted.\033[23;1HPress enter to continue.....")
         log_out(current_user)
     elif response == "3":
         main_menu(current_user)
@@ -181,7 +181,7 @@ def log_out(current_user):
     del current_user
     gui.terminal_control("clear_screen")
     print("You have been logged out")
-    input("Press enter to continue.....")
+    input("\033[23;1HPress enter to continue.....")
     main_menu(None)
 
 
@@ -214,10 +214,10 @@ def validate_user_id_entry(user_id, current_user, cell, option):
         gui.terminal_control("clear_screen")
         print(f"User data invalid: {error}")
         if option == "main_menu":
-            user_input = input('Press Enter to continue.....')
+            user_input = input('\033[23;1HPress Enter to continue.....')
             main_menu(current_user)
         elif option == "questions":
-            user_input = input('Press Enter to try again '
+            user_input = input('\033[23;1HPress Enter to try again '
                                'or "q" to start the quesionnaire: ')
             if user_input.lower() == "q":
                 question_user(current_user)
@@ -230,6 +230,7 @@ def load_user(current_user, option):
     """
     Request entry of user id
     """
+    gui.terminal_control("clear_screen")
     if current_user is None:
         valid_user_id = False
         while valid_user_id is False:
@@ -298,13 +299,13 @@ def results(current_user, max_total):
     current_user.session_results["final_score"] = user_results
     gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {user_results}")
-    print(questionnaire_details["summary"] + "\n\n")
+    print("\033[14;1H" + questionnaire_details["summary"] + "\n\n")
     bar_chart(current_user, user_results, max_total)
     if current_user.previous_user is True:
         previous_date = current_user.previous_results["date"]
         previous_score = current_user.previous_results["final_score"]
         print(f"Your previous score on {previous_date} was {previous_score}\n")
-    input("Press Enter to continue.....")
+    input("\033[23;1HPress Enter to continue.....")
     store_data(current_user)
 
 
@@ -337,9 +338,9 @@ def question_user(current_user):
         max_total += int(max_poss_score)
         responses.append(score)
         gui.terminal_control("clear_screen")
-        print(f"\033[5;4HYou chose option:\033[6;4H'{option_chosen}'.", end="")
-        print(f"\033[7;4H{score} points have been added to your carbon score")
-        # bar_chart(current_user, score, max_poss_score)
+        print(f"\033[2;1HYou chose option:\n'{option_chosen}'")
+        print(f"{score} points have been added to your carbon score")
+        bar_chart(current_user, score, max_poss_score)
     current_user.session_results["results"] = responses
     results(current_user, max_total)
 
@@ -351,26 +352,28 @@ def bar_chart(current_user, score, max_score):
     present previous results
     """
     # Scale down max_total and score to fit on bar chart when necessary
-    if max_score > 55:
+    if int(max_score) > 55:
         max_score_scaled = max_score / 4
         user_results_scaled = score / 4
     else:
         max_score_scaled = max_score
         user_results_scaled = score
-    bar_chart_string = "\033[9;13H"
-    print(f"bar score = {score}")
-    input("waiting")
+    bar_chart_string = "\033[6;13H"
     proportion = (round(55 / int(max_score_scaled))) * user_results_scaled
     for i in range(55):
         if i < proportion:
-            bar_chart_string += "\033[42;32m\u2588"
+            # 60 is the recommended carbon score max
+            if int(max_score) > 60:
+                bar_chart_string += "\033[41;31m\u2588"
+            else:
+                bar_chart_string += "\033[42;32m\u2588"
         elif i == proportion:
             bar_chart_string += "\033[42;30m\u2588"
         else:
             bar_chart_string += "\033[47;30m\u2591"
-    print("\033[9;4HMin 0" + bar_chart_string)
-    print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[9;70HMax {max_score}")
-    input("\n\nPress enter to continue.....")
+    print("\033[6;4HMin 0" + bar_chart_string)
+    print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[6;70HMax {max_score}")
+    input("\033[23;1HPress enter to continue.....")
     gui.terminal_control("clear_screen")
 
 
@@ -390,7 +393,7 @@ def create_user_id():
     print("this sessions data for comparison. Keep it safe it cannot")
     print("be retrieved if lost\n")
     print(f"Your user id is: {user_id}\n")
-    input("Press Enter to continue when ready .....")
+    input("\033[23;1HPress Enter to continue when ready .....")
     return user_id
 
 
@@ -407,7 +410,7 @@ def validate_range(user_input, valid_range):
     except ValueError as error:
         gui.terminal_control("clear_screen")
         print(f"Data invalid: {error}")
-        input("Press Enter to try again")
+        input("\033[23;1HPress Enter to try again")
         return False
 
     return True
