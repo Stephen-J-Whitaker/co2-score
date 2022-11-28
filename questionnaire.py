@@ -29,7 +29,7 @@ def string_wrap(string):
         while len(list_string) > ind:
             while list_string[ind] != " ":
                 ind -= 1
-            list_string.insert(ind + 1, "\n")
+            list_string.insert(ind + 1, "\n\033[1C")
             ind += 69
         new_string = "".join(list_string)
         return new_string
