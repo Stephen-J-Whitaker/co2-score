@@ -10,8 +10,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/addons/attach/attach.js"></script>
     <title>Python Terminal by Code Institute</title>
     <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%
+        }
+
         body {
             font-family: Arial;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
         }
 
         /**
@@ -158,7 +169,7 @@
         button {
             width: 200px;
             height: 40px;
-            background-color: #E84610;
+            background-color: #2190b5;
             border: 1px solid grey;
             color: white;
             text-transform: uppercase;
