@@ -387,10 +387,12 @@ def bar_chart(current_user, score, max_score, session):
             bar_chart_string += "\033[47;30m\u2591"
     if session == "current":
         print("\033[7;4HMin 0" + bar_chart_string)
-        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[7;70HMax {max_score}")
+        print(Back.BLUE + Fore.WHITE + Style.BRIGHT)
+        print(f"\033[7;70HMax {max_score}")
     elif session == "previous":
         print("\033[10;4HMin 0" + bar_chart_string)
-        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[10;70HMax {max_score}")
+        print(Back.BLUE + Fore.WHITE + Style.BRIGHT)
+        print(f"\033[10;70HMax {max_score}")
     if current_user.previous_user is False:
         input("\033[23;1HPress enter to continue.....")
         gui.terminal_control("clear_screen")
@@ -463,14 +465,11 @@ def main():
     Run all program functions
     """
     gui.set_gui_background("assets/images/gui_world.bmp")
-    # time.sleep(3)
+    time.sleep(3)
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
-    # time.sleep(3)
+    time.sleep(3)
     main_menu(None)
-    # pprint(questionnaire_details)
-    # print(questionnaire_details["questions"][0].question_info)
-    # print(questionnaire_details["summary"])
 
 
 main()

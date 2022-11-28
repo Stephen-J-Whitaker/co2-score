@@ -7,7 +7,7 @@ from numpy import asarray
 from colorama import Fore, Back, Style
 
 # Map bitmap pixel colours to equivalent escape characters
-# \u2588 fills a whole character cell 
+# \u2588 fills a whole character cell
 colour_map = {
     "(0, 0, 0)": "\033[40;30m\u2588",  # black
     "(255, 0, 0)": "\033[41;31m\u2588",  # red
@@ -34,7 +34,7 @@ title = [
     # Put cursor home for set style and colour else renders in wrong place
     # Title created in ASCII Art generator https://patorjk.com/software/taag/
     Back.BLUE + Fore.WHITE + Style.BRIGHT + "\033[H",
-    "\033[5;20H         ██████╗ ██████╗ ██████╗", 
+    "\033[5;20H         ██████╗ ██████╗ ██████╗",
     "\033[6;20H        ██╔════╝██╔═══██╗╚════██╗",
     "\033[7;20H        ██║     ██║   ██║ █████╔╝",
     "\033[8;20H        ██║     ██║   ██║██╔═══╝",
@@ -88,7 +88,7 @@ def set_gui_background(requested_background):
     gui_image = ""
     for pixel_row in range(int(image_map.image_size[1])):
         for pixel_col in range(int(image_map.image_size[0])):
-            # Run next command twice as two terminal char cells 
+            # Run next command twice as two terminal char cells
             # are roughly square matching bitmap pixel shape
             gui_image += colour_map[str(image_map.pixel_array
                                         [pixel_col, pixel_row])] * 2
