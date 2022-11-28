@@ -7,7 +7,6 @@ import time
 import sys
 import string
 import random
-import re
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
@@ -291,7 +290,7 @@ def store_results(current_user):
     main_menu(current_user)
 
 
-def results(current_user):
+def results(current_user, max_total):
     """
     Calculate co2 score and inform user
     """
@@ -300,6 +299,7 @@ def results(current_user):
     gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {user_results}")
     print(questionnaire_details["summary"] + "\n\n")
+    bar_chart(current_user, user_results, max_total)
     if current_user.previous_user is True:
         previous_date = current_user.previous_results["date"]
         previous_score = current_user.previous_results["final_score"]
@@ -316,6 +316,7 @@ def question_user(current_user):
     """
     responses = []
     for question in questionnaire_details["questions"]:
+        max_total = 0
         valid_input = False
         while valid_input is False:
             gui.terminal_control("clear_screen")
@@ -329,30 +330,28 @@ def question_user(current_user):
             num = len(question.options)
             response = input(f"Please select an option [1 - {num}]: ")
             valid_input = validate_option_input(response, num)
-            option_chosen = option_list[int(response) - 1]
-            score = int(question.options[int(response) - 1]["score"])
-            max_poss_score = str(question.max_poss_score)
-            print(f"max_poss_before = {max_poss_score}")
-            max_poss_score = max_poss_score.replace("Max possible score ", "")
-            print(f"max_poss_after = {max_poss_score}")
-            input("waiting")
+        option_chosen = option_list[int(response) - 1]
+        score = int(question.options[int(response) - 1]["score"])
+        max_poss_score = question.max_poss_score
+        max_poss_score = max_poss_score.replace("Max possible score ", "")
+        max_total += int(max_poss_score)
         responses.append(score)
-        bar_chart(current_user, option_chosen, score, max_poss_score)
+        gui.terminal_control("clear_screen")
+        print(f"\033[5;4HYou chose option '{option_chosen}'.", end="")
+        print(f"\033[7;4H{score} points have been added to your carbon score")
+        bar_chart(current_user, score, max_poss_score)
     current_user.session_results["results"] = responses
-    results(current_user)
+    results(current_user, max_total)
 
 
-def bar_chart(current_user, response, score, max_score):
+def bar_chart(current_user, score, max_score):
     """
     Show the users response as a proportion of highest possible
     score in the form of a bar chart and show comparison to any 
     present previous results
     """
-    gui.terminal_control("clear_screen")
-    print(f"\033[5;4HYou chose option '{response}'.", end="")
-    print(f"\033[7;4H{score} points have been added to your carbon score")
     bar_chart_string = "\033[9;13H"
-    proportion = (round(55 / 14)) * score
+    proportion = (round(55 / int(max_score))) * score
     for i in range(55):
         if i < proportion:
             bar_chart_string += "\033[42;32m\u2588"
