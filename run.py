@@ -467,10 +467,10 @@ def main():
     Run all program functions
     """
     gui.set_gui_background("assets/images/gui_world.bmp")
-    # time.sleep(3)
+    time.sleep(3)
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
-    # time.sleep(3)
+    time.sleep(3)
     main_menu(None)
 
 
