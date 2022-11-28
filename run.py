@@ -125,15 +125,15 @@ def instructions(current_user):
     Display instructions and then go to questionnaire
     or back to main menu
     """
-    gui.terminal_control("clear_screen")
-    print("Instructions\n")
-    print(questionnaire_details["Instructions"])
-    print("\n")
     valid_response = False
     while valid_response is False:
+        gui.terminal_control("clear_screen")
+        print("Instructions\n")
+        print(questionnaire_details["Instructions"])
+        print("\n")
         print("1. Continue to questionnaire")
         print("2. Return to main menu")
-        user_choice = input("Please enter an option [1 or 2]")
+        user_choice = input("Please enter an option [1 or 2]: ")
         valid_response = validate_option_input(user_choice, 2)
     if user_choice == "1":
         if current_user is None:
@@ -167,7 +167,7 @@ def administer_data(current_user):
         cell = co2_scores_sheet.find(current_user.user_id)
         co2_scores_sheet.delete_rows(cell.row)
         gui.terminal_control("clear_screen")
-        input("Your data has been deleted.\033[23;1HPress enter to continue.....")
+        input("Your data has been deleted.\033[23;1HPress enter to continue.")
         log_out(current_user)
     elif response == "3":
         main_menu(current_user)
@@ -280,14 +280,15 @@ def store_results(current_user):
     elif current_user.previous_user is True:
         cell = user_sheet.find(current_user.user_id)
         sheet_range = "A" + str(cell.row) + ":O" + str(cell.row)
-        print(f"range = {sheet_range}")
-        print(f"sheet data = {sheet_data}")
         update_data = []
         update_data.append(sheet_data)
-        print(f"update_data = {update_data}")
-        input("waiting")
         user_sheet.update(sheet_range, update_data)
-        input("waiting")
+    # Make previous results current results only if user wasn't a previous user
+    # before this session
+    if current_user.previous_user is False:
+        current_user.previous_results = current_user.session_results
+        # Make previous user True in case saved for first time
+        current_user.previous_user = True
     main_menu(current_user)
 
 
@@ -295,17 +296,20 @@ def results(current_user, max_total):
     """
     Calculate co2 score and inform user
     """
+    print(f"session results = {id(current_user.session_results)}")
+    if current_user.previous_user is True:
+        print(f"previous results = {id(current_user.previous_results)}")
+    input("waiting")
     user_results = sum(current_user.session_results["results"])
     current_user.session_results["final_score"] = user_results
     gui.terminal_control("clear_screen")
     print(f"Your carbon footprint score is {user_results}")
     print("\033[14;1H" + questionnaire_details["summary"] + "\n\n")
-    bar_chart(current_user, user_results, max_total)
+    bar_chart(current_user, user_results, max_total, "current")
     if current_user.previous_user is True:
-        previous_date = current_user.previous_results["date"]
         previous_score = current_user.previous_results["final_score"]
-        print(f"Your previous score on {previous_date} was {previous_score}\n")
-    input("\033[23;1HPress Enter to continue.....")
+        bar_chart(current_user, previous_score, max_total, "previous")
+        input("\033[23;1HPress enter to continue.....")
     store_data(current_user)
 
 
@@ -340,12 +344,15 @@ def question_user(current_user):
         gui.terminal_control("clear_screen")
         print(f"\033[2;1HYou chose option:\n'{option_chosen}'")
         print(f"{score} points have been added to your carbon score")
-        bar_chart(current_user, score, max_poss_score)
+        # bar_chart(current_user, score, max_poss_score, "current")
+        if current_user.previous_user is True:
+            score = current_user.previous_results["final_score"]
+            # bar_chart(current_user, score, max_poss_score, "previous")
     current_user.session_results["results"] = responses
     results(current_user, max_total)
 
 
-def bar_chart(current_user, score, max_score):
+def bar_chart(current_user, score, max_score, session):
     """
     Show the users response as a proportion of highest possible
     score in the form of a bar chart and show comparison to any
@@ -358,7 +365,13 @@ def bar_chart(current_user, score, max_score):
     else:
         max_score_scaled = max_score
         user_results_scaled = score
-    bar_chart_string = "\033[6;13H"
+    if session == "current":
+        bar_chart_string = "\033[6;13H"
+        print(f"\033[5;1HYour score is {score}")
+    elif session == "previous":
+        previous_date = current_user.previous_results["date"]
+        print(f"\033[8;1HYour previous score on {previous_date} was {score}")
+        bar_chart_string = "\033[9;13H"
     proportion = (round(55 / int(max_score_scaled))) * user_results_scaled
     for i in range(55):
         if i < proportion:
@@ -371,10 +384,15 @@ def bar_chart(current_user, score, max_score):
             bar_chart_string += "\033[42;30m\u2588"
         else:
             bar_chart_string += "\033[47;30m\u2591"
-    print("\033[6;4HMin 0" + bar_chart_string)
-    print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[6;70HMax {max_score}")
-    input("\033[23;1HPress enter to continue.....")
-    gui.terminal_control("clear_screen")
+    if session == "current":
+        print("\033[6;4HMin 0" + bar_chart_string)
+        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[6;70HMax {max_score}")
+    elif session == "previous":
+        print("\033[9;4HMin 0" + bar_chart_string)
+        print(Back.BLUE + Fore.WHITE + Style.BRIGHT + f"\033[9;70HMax {max_score}")
+    if current_user.previous_user is False:
+        input("\033[23;1HPress enter to continue.....")
+        gui.terminal_control("clear_screen")
 
 
 def create_user_id():
