@@ -185,7 +185,7 @@ def log_out(current_user):
     """
     del current_user
     gui.terminal_control("clear_screen")
-    print("\033[10;2HYou have been logged out")
+    print("\033[2;2HYou have been logged out")
     input("\033[23;2HPress enter to continue.....")
     main_menu(None)
 
