@@ -71,7 +71,9 @@ def main_menu(current_user):
         gui.terminal_control("clear_screen")
         if current_user is not None and current_user.user_id is not None:
             print(f"\033[1CUser logged in: {current_user.user_id}\n")
-        # Moves cursor 1 place to right with \033[1C 
+        print("                                    CO2 SCORE")
+        print("                            Calculate your co2 score\n")
+        # Moves cursor 1 place to right with \033[1C
         print("\033[1C1. View instructions\n")
         print("\033[1C2. Start the questionnaire\n")
         print("\033[1C3. Exit software\n")
