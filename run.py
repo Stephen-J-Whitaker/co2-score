@@ -472,7 +472,7 @@ def main():
     time.sleep(1)
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
-    time.sleep(15)
+    time.sleep(1)
     main_menu(None)
 
 
