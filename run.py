@@ -71,7 +71,7 @@ def main_menu(current_user):
         gui.terminal_control("clear_screen")
         if current_user is not None and current_user.user_id is not None:
             print(f"\033[1CUser logged in: {current_user.user_id}\n")
-        # \033[1C moves cursor 1 place to right
+        # Moves cursor 1 place to right with \033[1C 
         print("\033[1C1. View instructions\n")
         print("\033[1C2. Start the questionnaire\n")
         print("\033[1C3. Exit software\n")
@@ -472,7 +472,7 @@ def main():
     time.sleep(1)
     gui.set_gui_background("assets/images/gui_back_blue_1.bmp")
     gui.app_title()
-    time.sleep(1)
+    time.sleep(15)
     main_menu(None)
 
 
