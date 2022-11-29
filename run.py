@@ -431,13 +431,14 @@ def validate_range(user_input, valid_range):
     try:
         if user_input not in valid_range:
             raise ValueError(
-                '\033[1CPlease enter either'
+                '\033[1CPlease enter either '
                 f'"{valid_range[0]}" or "{valid_range[1]}"'
             )
     except ValueError as error:
         gui.terminal_control("clear_screen")
         print(f"\033[1CData invalid: {error}")
         input("\033[23;2HPress Enter to try again")
+        gui.terminal_control("clear_screen")
         return False
 
     return True
