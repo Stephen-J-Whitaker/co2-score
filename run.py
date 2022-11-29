@@ -61,28 +61,6 @@ class PreviousUser(User):
         }
 
 
-def validate_option_input(user_input, user_range):
-    """
-    Confirm that the user input is in range and
-    is numeric.
-    """
-    try:
-        int(user_input)
-        if int(user_input) < 1 or int(user_input) > user_range:
-            raise ValueError(
-                "The value entered was out of range"
-            )
-    except ValueError as error:
-        gui.terminal_control("clear_screen")
-        print(f"\033[1CData invalid: {error}")
-        print(f"\033[1CPlease select an option from 1 - {user_range}")
-        print("\033[1CPlease try again")
-        input("\033[23;2HPress Enter to try again")
-        return False
-
-    return True
-
-
 def main_menu(current_user):
     """
     Display the main menu to the user and action there
@@ -122,6 +100,27 @@ def main_menu(current_user):
         log_out(current_user)
 
 
+def validate_option_input(user_input, user_range):
+    """
+    Confirm that the user input is in range and
+    is numeric.
+    """
+    try:
+        int(user_input)
+        if int(user_input) < 1 or int(user_input) > user_range:
+            raise ValueError(
+                "The value entered was out of range"
+            )
+    except ValueError as error:
+        gui.terminal_control("clear_screen")
+        print(f"\033[1CData invalid: {error}")
+        print(f"\033[1CPlease select an option from 1 - {user_range}")
+        input("\033[23;2HPress Enter to try again")
+        return False
+
+    return True
+
+
 def instructions(current_user):
     """
     Display instructions and then go to questionnaire
@@ -158,7 +157,7 @@ def administer_data(current_user):
         print("\033[1C1. Review previous score")
         print("\033[1C2. Delete data")
         print("\033[1C3. Return to main menu")
-        response = input("\033[1CPlease select an option [1 - 3]: ")
+        response = input("\033[1CPlease select an option [1-3]: ")
         valid_response = validate_option_input(response, 3)
     if response == "1":
         previous_score = current_user.previous_results["final_score"]
@@ -336,7 +335,7 @@ def question_user(current_user):
                 print(f"\033[1C{ind}. " + option["option_detail"])
                 ind += 1
             num = len(question.options)
-            response = input(f"\n\033[1CPlease select an option [1 - {num}]: ")
+            response = input(f"\n\033[1CPlease select an option [1-{num}]: ")
             valid_input = validate_option_input(response, num)
         option_chosen = option_list[int(response) - 1]
         score = int(question.options[int(response) - 1]["score"])
