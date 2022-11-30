@@ -26,3 +26,13 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 9 [Credits](#9-credits)
 
+## **1. Project Initiation**
+- User stories
+  
+  User stories were ascertained for the game along with the features required to satisfy the user stories. A feature list was developed that covered all of the user stories requirements and it was ensured that there was no duplicated feature functionality going into development.
+
+  - [User Stories](docs/pdfs/readme-user-stories.pdf)
+  - [User stories acceptance criteria](docs/pdfs/readme-user-story-acceptance-criteria.pdf)
+  - [Feature list with acceptance criteria](docs/pdfs/readme-feature-acceptance-criteria.pdf)
+
+  
