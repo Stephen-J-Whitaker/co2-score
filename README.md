@@ -6,3 +6,23 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 ![Responsive mockup](docs/images/readme-responsive-mockup.jpg)
 
+## **Contents**
+
+1 [Project Initiation](#1-project-initiation)
+
+2 [Questionnaire tool development](#2-questionnaire-tool-development)
+
+3 [Features](#3-features)
+
+4 [Testing](#4-testing)
+
+5 [Project Sign Off](#5-project-sign-off)
+
+6 [Releases](#6-releases)
+
+7 [Deployment](#7-deployment)
+
+8 [Technologies Use](#8-technologies-used)
+
+9 [Credits](#9-credits)
+
