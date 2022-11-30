@@ -167,7 +167,10 @@ def administer_data(current_user):
         valid_response = validate_option_input(response, 3)
     if response == "1":
         previous_score = current_user.previous_results["final_score"]
-        print(f"\033[1CYour previous score was {previous_score}")
+        gui.terminal_control("clear_screen")
+        print(f"\033[2;2HYour previous score was {previous_score}")
+        bar_chart(current_user, int(previous_score), int(180), "previous")
+        print("\033[14;2H" + questionnaire_details["summary"] + "\n\n")
         input("\033[1CPress enter to continue.....")
         administer_data(current_user)
     elif response == "2":
