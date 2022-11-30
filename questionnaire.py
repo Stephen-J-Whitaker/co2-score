@@ -35,6 +35,8 @@ def string_wrap(string):
         return new_string
 
 
+# The questionnaire is sourced from www.wikihow.com
+# https://www.wikihow.com/Calculate-Your-Carbon-Footprint
 def get_questionnaire(co2_sheet):
     """
     Import the questionnaire from the external spreadsheet
