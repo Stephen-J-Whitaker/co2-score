@@ -92,6 +92,9 @@ def main_menu(current_user):
             current_user = load_user(current_user, "questions")
         question_user(current_user)
     elif response == "3":
+        gui.set_gui_background("assets/images/gui_world.bmp")
+        print("\033[22;38HEXITING")
+        time.sleep(1)
         print(Style.RESET_ALL)
         gui.terminal_control("clear_screen")
         gui.terminal_control("cursor_home")
