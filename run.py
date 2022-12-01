@@ -371,12 +371,8 @@ def bar_chart(current_user, score, max_score, session):
     present previous results
     """
     # Scale down max_total and score to fit on bar chart when necessary
-    if int(max_score) > 55:
-        max_score_scaled = max_score / 4
-        user_results_scaled = score / 4
-    else:
-        max_score_scaled = max_score
-        user_results_scaled = score
+    max_score_scaled = max_score / 4 if int(max_score) > 55 else max_score
+    user_results_scaled = score / 4 if int(max_score) > 55 else score
     if session == "current":
         bar_chart_string = "\033[7;13H"
         print(f"\033[6;2HYour score is {score}")
