@@ -385,7 +385,7 @@ def bar_chart(current_user, score, max_score, session):
     for i in range(55):
         if i < proportion:
             # 60 is the recommended carbon score max
-            if int(max_score) > 60:
+            if int(max_score_scaled) > 60:
                 bar_chart_string += "\033[41;31m\u2588"
             else:
                 bar_chart_string += "\033[42;32m\u2588"
