@@ -339,7 +339,6 @@ def question_user(current_user):
         while valid_input is False:
             gui.terminal_control("clear_screen")
             print(f"\033[1CQuestion {question_num} of {num_of_questions}\n")
-            question_num += 1
             print(f"\033[1C{question.question_info}\n")
             ind = 1
             option_list = []
@@ -350,6 +349,7 @@ def question_user(current_user):
             num = len(question.options)
             response = input(f"\n\033[1CPlease select an option [1-{num}]: ")
             valid_input = validate_option_input(response, num)
+        question_num += 1
         option_chosen = option_list[int(response) - 1]
         score = int(question.options[int(response) - 1]["score"])
         max_poss_score = question.max_poss_score
