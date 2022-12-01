@@ -312,7 +312,7 @@ def results(current_user, max_total):
     user_results = sum(current_user.session_results["results"])
     current_user.session_results["final_score"] = user_results
     gui.terminal_control("clear_screen")
-    print(f"\033[1CYour carbon footprint score is {user_results}")
+    print(f"\033[1CYour total carbon footprint score is {user_results}")
     print("\033[14;2H" + questionnaire_details["summary"] + "\n\n")
     bar_chart(current_user, user_results, max_total, "current")
     if current_user.previous_user is True:
