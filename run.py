@@ -76,8 +76,8 @@ def main_menu(current_user):
         # Moves cursor 1 place to right with \033[1C
         print("\033[1C1. View instructions\n")
         print("\033[1C2. Start the questionnaire\n")
-        print("\033[1C3. Exit software\n")
-        print("\033[1C4. Administer data\n")
+        print("\033[1C3. Administer data\n")
+        print("\033[1C4. Exit software\n")
         if current_user is not None and current_user.user_id is not None:
             print("\033[1C5. Log out\n")
             menu_range = 5
@@ -92,6 +92,8 @@ def main_menu(current_user):
             current_user = load_user(current_user, "questions")
         question_user(current_user)
     elif response == "3":
+        administer_data(current_user)
+    elif response == "4":
         print(Style.RESET_ALL)
         gui.set_gui_background("assets/images/gui_world.bmp")
         print("\033[23;37H\033[44;37mEXITING")
@@ -100,8 +102,6 @@ def main_menu(current_user):
         gui.terminal_control("clear_screen")
         gui.terminal_control("cursor_home")
         sys.exit()
-    elif response == "4":
-        administer_data(current_user)
     elif response == "5":
         log_out(current_user)
 
