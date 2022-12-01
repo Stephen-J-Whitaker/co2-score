@@ -35,4 +35,10 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   - [User stories acceptance criteria](docs/pdfs/readme-user-story-acceptance-criteria.pdf)
   - [Feature list with acceptance criteria](docs/pdfs/readme-feature-acceptance-criteria.pdf)
 
-  
+## **2. Questionnaire Tool Development**
+  - ### **Tool Functionality Development**
+
+    - ### Interface Mockups
+      The tool is implemented using the Python ‘back end’ language and is made available on the internet in a desktop browser via a mock terminal coded by [Code Institute](https://codeinstitute.net/). As such the requirement for user interface design is minimal especially in terms of the web page itself. The web page has been developed in advance by Code Institute but can be custom styled prior to deployment.
+
+      
