@@ -8,6 +8,7 @@ import sys
 import string
 import random
 import copy
+import math
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
@@ -380,7 +381,7 @@ def bar_chart(current_user, score, max_score, session):
         previous_date = current_user.previous_results["date"]
         print(f"\033[9;2HYour previous score on {previous_date} was {score}")
         bar_chart_string = "\033[10;13H"
-    proportion = (round(55 / int(max_score_scaled))) * user_results_scaled
+    proportion = (math.ceil(55 / int(max_score_scaled))) * user_results_scaled
     for i in range(55):
         if i < proportion:
             # 60 is the recommended carbon score max
