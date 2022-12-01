@@ -413,7 +413,9 @@ def create_user_id():
     num_pool = range(10)
     num_char_pool += [str(num) for num in num_pool]
     user_id_list = []
-    for index in range(5):
+    index = 5
+    while index > 0:
+        index -= 1
         user_id_list.append(random.choice(num_char_pool))
     user_id = "".join(user_id_list)
     gui.terminal_control("clear_screen")
