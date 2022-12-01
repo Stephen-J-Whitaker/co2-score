@@ -332,10 +332,14 @@ def question_user(current_user):
     responses = []
     max_total = 0
     index = 0
+    num_of_questions = len(questionnaire_details["questions"])
+    question_num = 1
     for question in questionnaire_details["questions"]:
         valid_input = False
         while valid_input is False:
             gui.terminal_control("clear_screen")
+            print(f"\033[1CQuestion {question_num} of {num_of_questions}\n")
+            question_num += 1
             print(f"\033[1C{question.question_info}\n")
             ind = 1
             option_list = []
