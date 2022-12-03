@@ -172,11 +172,22 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
       |copy| deepcopy method is used to copy a users current session to a previous session variable if the user decides to repeat the questionnaire within the same visit to the software|
       |math|ceil used to round up the proportion variable when generating a bar chart|
       |datetime|datetime is used to populate date fields with the date of the session|
-      |gspread|used to access the external Google Spreadsheet|
+      |gspread|used to create, read, update and delete data within the external Google Spreadsheet|
       |google.oauth2service_account : credentials|used to gain access to the external google spreadsheet|
       |colorama|used for terminal foreground and background styling|
       |pil : image|used to open and load bitmap images into the software|
       |numpy|used to convert the image into an array for accessing the pixel data within the software|
+
+  - ### **Security**
+
+    In the interest of security, the current use variable is deleted from the system before the software returns the user to the main menu in the event that the user choose not to have their data saved.
+
+    When the user elects to have their data saved they are allocated a random 5 character alphanumeric code with which to retrieve their data. Their questions answer scores and their total score along with the date of the session are stored in the external spreadsheet along with this random code. No other personal data, (for example, name, address, age, email, phone number) are stored. 
+
+    Should the user wish to do so they can delete their user id along with any associated data from the ‘Administer data’ menu.
+    
+    The decision not to take and store any personal information was to ensure that the statistical information that the users results represent could be used for later analysis without risk of releasing any personal user information.
+
 
 
 ## **3. Instructions**
@@ -184,6 +195,14 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 ## **4. Features**
 
 ## **5. Testing**
+
+input errors
+
+pep 8
+
+bugs
+
+
 
 ## **6. Project Sign Off**
 
