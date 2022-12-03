@@ -98,6 +98,18 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     - [Python Code Outline and Pseudo Code](pdfs/readme-pseudo-code.pdf)
 
+  - ### **Software Structure**
+
+    The main functionailty is within [run.py](run.py)
+
+    The following additional python libraries were produced to support the main functionality:
+
+    - Libraries developed for the project
+      |Library|Function|
+      |-------|--------|
+      |[gui](gui.py)|used to style the user interface and produce graphics|
+      |[questionnaire](gui.py)|used to build the questionnaire data structure from the external google spreadhseet|
+
   - ### **Data Model**
 
     The data models are for the questions and the user.
@@ -161,16 +173,10 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
       |math|ceil used to round up the proportion variable when generating a bar chart|
       |datetime|datetime is used to populate date fields with the date of the session|
       |gspread|used to access the external Google Spreadsheet|
-      | google.oauth2.service_account : credentials|used to gain access to the external google spreadsheet|
+      |google.oauth2service_account: credentials|used to gain access to the external google spreadsheet|
       |colorama|used for terminal foreground and background styling|
       |pil:image|used to open and load bitmap images into the software|
       |numpy|used to convert the image into an array for accessing the pixel data within the software|
-
-    - Libraries developed for the project
-      |Library|Function|
-      |-------|--------|
-      |gui|used to style the user interface and produce graphics|
-      |questionnaire|used to build the questionnaire data structure from the external google spreadhseet|
 
 
 ## **3 Instructions**
