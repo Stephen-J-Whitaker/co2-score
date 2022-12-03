@@ -85,6 +85,7 @@ def main_menu(current_user):
         print("                                    CO2 SCORE")
         print("                            Calculate your co2 score\n")
         # Moves cursor 1 place to right with \033[1C
+        print("\n\033[1CMain menu\n")
         print("\033[1C1. View instructions\n")
         print("\033[1C2. Start the questionnaire\n")
         print("\033[1C3. Administer data\n")
