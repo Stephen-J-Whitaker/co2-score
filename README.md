@@ -150,8 +150,28 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - ### **Software Dependencies**
 
-    |Library|Function|
-    |---|----------|
+    - External Imported libirary dependencies developed by third parties
+      |Library|Function|
+      |-------|--------|
+      |time|sleep method used to implement a delay between images being shown on software startup|
+      |sys|exit method is used to stop the software|
+      |string|ascii_letters method is used to populate a list with all upper and lowercase alphabet characters to use as a pool to randomly select from when generating a user id|
+      |random|random method is used to ‘choose’ characters from a character list when generating a user id|
+      |copy| deepcopy method is used to copy a users current session to a previous session variable if the user decides to repeat the questionnaire within the same visit to the software|
+      |math|ceil used to round up the proportion variable when generating a bar chart|
+      |datetime|datetime is used to populate date fields with the date of the session|
+      |gspread|used to access the external Google Spreadsheet|
+      | google.oauth2.service_account : credentials|used to gain access to the external google spreadsheet|
+      |colorama|used for terminal foreground and background styling|
+      |pil:image|used to open and load bitmap images into the software|
+      |numpy|used to convert the image into an array for accessing the pixel data within the software|
+
+    - Libraries developed for the project
+      |Library|Function|
+      |-------|--------|
+      |gui|used to style the user interface and produce graphics|
+      |questionnaire|used to build the questionnaire data structure from the external google spreadhseet|
+
 
 ## **3 Instructions**
 

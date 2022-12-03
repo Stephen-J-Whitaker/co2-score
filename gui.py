@@ -2,6 +2,7 @@
 Module to create graphical backdrops
 """
 
+# Imported library dependencies from third party sources
 from PIL import Image
 from numpy import asarray
 from colorama import Fore, Back, Style
@@ -70,7 +71,8 @@ def terminal_control(command):
 
 def open_image(image_name):
     """
-    Opens the requested image for use
+    Opens the requested image for use using the PIL third party library
+    load and size methods and the numpy third party library asarray method
     """
     with Image.open(image_name) as image:
         pixel_array = image.load()

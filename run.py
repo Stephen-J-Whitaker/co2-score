@@ -3,6 +3,7 @@ Main co2 score code that asks a user questions in order to estimate their
 carbon footprint
 """
 
+# Imported library dependencies from third party sources
 import time
 import sys
 import string
@@ -13,6 +14,8 @@ from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 from colorama import Fore, Back, Style
+
+# Custom imports developed for the application
 import gui
 import questionnaire
 
