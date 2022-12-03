@@ -47,6 +47,13 @@ class User():
             "final_score": None
         }
 
+    def date(self):
+        """
+        Method to add current date to class instance
+        """
+        date = datetime.now().date().strftime("%d-%m-%Y")
+        self.session_results["date"] = date
+
 
 class PreviousUser(User):
     """
@@ -202,8 +209,8 @@ def initialise_user():
     Create user instance and call questionnaire
     """
     current_user = User(None)
-    date = datetime.now().date().strftime("%d-%m-%Y")
-    current_user.session_results["date"] = date
+    current_user.date()
+    input(f"current_user date = {current_user.session_results['date']}")
     return current_user
 
 
@@ -272,8 +279,7 @@ def load_user(current_user, option):
         current_user.previous_results["results"] = previous_results
         final_score = previous_results_row[14]
         current_user.previous_results["final_score"] = final_score
-        date = datetime.now().date().strftime("%d-%m-%Y")
-        current_user.session_results["date"] = date
+        current_user.date()
     return current_user
 
 
