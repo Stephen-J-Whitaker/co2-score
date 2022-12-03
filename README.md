@@ -68,7 +68,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
       The theme of the software being related to Earth’s atmosphere, a harmonious colour scheme inspired by the colours commonly used to depict Earth from space were chosen. Images were designed in blues and greens and the interface and text were styled blue and white respectively. 
       The exception to this was the result page score bar which is green if the total score is less than or equal to the recommended level of 60 and red if it is above 60.
       
-      The colour scheme of the CLI is restricted to those that the mock terminal can generate, that can be accessed by ANSI Escape characters and made available through the [Colorama Python library]( https://pypi.org/project/colorama/)
+      The colour scheme of the CLI is restricted to those that the mock terminal can generate, that can be accessed by ANSI Escape characters and functions made available through the [Colorama Python library]( https://pypi.org/project/colorama/)
 
       ![Bar chart colours](docs/images/readme-colour-scheme.jpg)
 
@@ -162,7 +162,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - ### **Software Dependencies**
 
-    - External Imported libirary dependencies developed by third parties
+    - External Imported library dependencies developed by third parties
       |Library|Function|
       |-------|--------|
       |time|sleep method used to implement a delay between images being shown on software startup|
@@ -179,5 +179,24 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
       |numpy|used to convert the image into an array for accessing the pixel data within the software|
 
 
-## **3 Instructions**
+## **3. Instructions**
 
+## **10. Credits**
+
+- ### **Content**
+  - All code was written by the author, [Stephen Whitaker](https://github.com/Stephen-J-Whitaker), unless explicitly stated within the code.
+  - The content of the questionnaire was sourced from [wikiHOW](https://www.wikihow.com/Calculate-Your-Carbon-Footprint)
+  - [Third party libraries](#software-dependencies) were imported to support the software as described in the [Third party libraries](#software-dependencies) section.
+  - Code in order to gain access to the external spreadsheet was provided by [Code Institute](https://codeinstitute.net/ie/)
+  - Ascii art was produced using [Ascii Art Generator]( https://patorjk.com/software/taag/)
+
+- ### **Other Sources**
+  - Ansi escape codes used for moving the cursor and colouring the terminal were referenced from:
+    - [Ansi escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+  - Guidance on the markdown and structure to produce the readme was obtained from :
+      - [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)
+      - [Markdown for readme](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+- ### **Acknowledgements**
+  - A special thank you to my mentor Maranatha Ilesanmi
+  - Thank you to all those who were kind enough to test the website and provide feedback
