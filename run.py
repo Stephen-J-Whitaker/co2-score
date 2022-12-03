@@ -417,12 +417,18 @@ def create_user_id():
     num_char_pool = list(string.ascii_letters)
     num_pool = range(10)
     num_char_pool += [str(num) for num in num_pool]
-    user_id_list = []
-    index = 5
-    while index > 0:
-        index -= 1
-        user_id_list.append(random.choice(num_char_pool))
-    user_id = "".join(user_id_list)
+    new_user_id = False
+    while new_user_id is False:
+        user_id_list = []
+        index = 5
+        while index > 0:
+            index -= 1
+            user_id_list.append(random.choice(num_char_pool))
+        user_id = "".join(user_id_list)
+        co2_scores_sheet = CO2_SHEET.worksheet("co2_scores")
+        cell = co2_scores_sheet.find(user_id)
+        if cell is None:
+            new_user_id = True
     gui.terminal_control("clear_screen")
     print("\033[1CIf you use this tool again the user id can be used to load")
     print("\033[1Cthis sessions data for comparison. Keep it safe it cannot")
