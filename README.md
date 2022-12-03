@@ -96,11 +96,47 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     - [Software Logic Flow Diagram](pdfs/readme-feature-code-design-v1.pdf)
 
-    - [Python code outline and pseudo](pdfs/readme-pseudo-code.pdf)
+    - [Python Code Outline and Pseudo Code](pdfs/readme-pseudo-code.pdf)
 
-  - ### **Data Structure**
+  - ### **Data Model**
 
-    The
+    The data models are for the questions and the user.
+
+      - **Questionnaire**
+      
+        The questionnaire itself is read from the external spreadsheet via a Google Cloud, Google Spreadsheet API into a dictionary containing the following keys:
+        
+        - “Instructions”:  [String] Questionnaire instructions
+        
+        - “Questions”: [List] An array of questions held in sequential order 
+        
+        - “Summary”: [String] Summing up notice displayed at the end of the questionnaire
+        
+        Each question is an instance of the Question class (defined in [questionnaire.py])(questionnaire.py). It holds the question string (what the user is being asked to respond to), the maximum possible integer score for the question and sequentially ordered list of question answer options that the user choses from.
+        
+        One questionnaire instance exists whilst the software is running and this contains as many Question instances as there are in the spreadsheet, which, with its current content, is 12 questions. 
+
+      - **User**
+
+        - The User class, define in [run.py]( run.py) holds the following:
+
+          - User_id: [string] A 5 randomly generated 5 character alphanumeric code
+          -  Previous_user: [boolean] Whether the user has played before or not
+          Session_results: [dictionary] which contains:
+              -  Date: [string] Date of questionnaire completion
+              -  Results: [list] The score of each of the answers given by the user
+              -  Final_score: [integer] The sum of all the scores in the ‘results’ list
+
+
+          - The User class also contains a method ‘date’ that populates the User instance: session results: date variable with the date that the questionnaire was answered.
+
+        - A child PreviousUser class is also defined. Its parent class is User. It is initialised with previous_user being True and holds the additional information:
+
+          - Previous_results: [dictionary] which contains the following previous session information read from the external spreadsheet and is looked up using any given user id:
+            - Date: [string] Date of questionnaire completion
+            - Results: [list] The score of each of the answers given by the user
+            - Final_score: [integer] The sum of all the scores in the ‘results’ list
+
 
   - ### **External Spreadsheet**
 
