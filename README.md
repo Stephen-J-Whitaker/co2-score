@@ -12,19 +12,21 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 2 [Questionnaire tool development](#2-questionnaire-tool-development)
 
-3 [Features](#3-features)
+3 [Instructions](#3-instructions)
 
-4 [Testing](#4-testing)
+4 [Features](#3-features)
 
-5 [Project Sign Off](#5-project-sign-off)
+5 [Testing](#4-testing)
 
-6 [Releases](#6-releases)
+6 [Project Sign Off](#5-project-sign-off)
 
-7 [Deployment](#7-deployment)
+7 [Releases](#6-releases)
 
-8 [Technologies Use](#8-technologies-used)
+8 [Deployment](#7-deployment)
 
-9 [Credits](#9-credits)
+9 [Technologies Use](#8-technologies-used)
+
+10 [Credits](#9-credits)
 
 ## **1. Project Initiation**
 - User stories
@@ -96,7 +98,24 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     - [Python code outline and pseudo](pdfs/readme-pseudo-code.pdf)
 
-  
+  - ### **Data Structure**
 
+    The
 
-   
+  - ### **External Spreadsheet**
+
+    An external Google Spreadsheet was selected as the data repository. It holds the questionnaire details that are read into the software on load as the user responses and scores. 
+    
+    The benefit of the questionnaire being read in from the spreadsheet on load is that it could quickyl be updated without modification to any code or redeployment. The software is simply restarted in order to update the questions held within it. 
+
+    The Google Spreadsheet is accessed via the Google Sheets API. The Spreadsheet format can be found below. For security, the API keys are in a file called creds.json that is included in the gitignore file and is never uploaded to GitHub.
+
+    - [CO2 Score Google Spreadsheet](pdfs/readme-co2-score-spreadsheet.pdf)
+
+  - ### **Software Dependencies**
+
+    |Library|Function|
+    |---|----------|
+
+## **3 Instructions**
+
