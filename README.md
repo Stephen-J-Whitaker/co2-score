@@ -88,6 +88,15 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
       On other occasions, for example to confirm that their data has been deleted from the system, there will be a printed message that confirms the requested action has been taken place.
 
+  - ### **Software Logic**
+
+    A flow diagram was developed that incorporated all of the features that were ascertained as required to fulfil the user stories were. Algorithms were outlined along with some pseudo code for the key functions of the software. 
+
+    - [Software Logic Flow Diagram](pdfs/readme-feature-code-design-v1.pdf)
+
+    - [Python code outline and pseudo](pdfs/readme-pseudo-code.pdf)
+
+  
 
 
    
