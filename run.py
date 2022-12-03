@@ -210,7 +210,6 @@ def initialise_user():
     """
     current_user = User(None)
     current_user.date()
-    input(f"current_user date = {current_user.session_results['date']}")
     return current_user
 
 
@@ -391,7 +390,7 @@ def bar_chart(current_user, score, max_score, session):
         previous_date = current_user.previous_results["date"]
         print(f"\033[9;2HYour previous score on {previous_date} was {score}")
         bar_chart_string = "\033[10;13H"
-    proportion = (math.ceil(55 / int(max_score_scaled))) * user_results_scaled
+    proportion = math.ceil((55 / int(max_score_scaled)) * user_results_scaled)
     for i in range(55):
         if i < proportion:
             # 60 is the recommended carbon score max
