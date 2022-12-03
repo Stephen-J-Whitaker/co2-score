@@ -173,13 +173,27 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
       |math|ceil used to round up the proportion variable when generating a bar chart|
       |datetime|datetime is used to populate date fields with the date of the session|
       |gspread|used to access the external Google Spreadsheet|
-      |google.oauth2service_account: credentials|used to gain access to the external google spreadsheet|
+      |google.oauth2service_account : credentials|used to gain access to the external google spreadsheet|
       |colorama|used for terminal foreground and background styling|
-      |pil:image|used to open and load bitmap images into the software|
+      |pil : image|used to open and load bitmap images into the software|
       |numpy|used to convert the image into an array for accessing the pixel data within the software|
 
 
 ## **3. Instructions**
+
+## **4. Features**
+
+## **5. Testing**
+
+## **6. Project Sign Off**
+
+## **7. Releases**
+
+- ###  Version 1.0 First release : Date 
+
+## **8. Deployment**
+
+## **9. Technologies Used**
 
 ## **10. Credits**
 
