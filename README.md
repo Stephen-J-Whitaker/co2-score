@@ -97,9 +97,9 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     A flow diagram was developed that incorporated all of the features that were ascertained as required to fulfil the user stories were. Algorithms were outlined along with some pseudo code for the key functions of the software. 
 
-    - [Software Logic Flow Diagram](pdfs/readme-feature-code-design-v1.pdf)
+    - [Software Logic Flow Diagram](docs/pdfs/readme-feature-code-design-v1.pdf)
 
-    - [Python Code Outline and Pseudo Code](pdfs/readme-pseudo-code.pdf)
+    - [Python Code Outline and Pseudo Code](docs/pdfs/readme-pseudo-code.pdf)
 
   - ### **Software Structure**
 
@@ -161,7 +161,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     The Google Spreadsheet is accessed via the Google Sheets API. The Spreadsheet format can be found below. For security, the API keys are in a file called creds.json that is included in the gitignore file and is never uploaded to GitHub.
 
-    - [CO2 Score Google Spreadsheet](pdfs/readme-co2-score-spreadsheet.pdf)
+    - [CO2 Score Google Spreadsheet](docs/pdfs/readme-co2-score-spreadsheet.pdf)
 
   - ### **Software Dependencies**
 
@@ -231,6 +231,119 @@ validation errors
 - ###  Version 1.0 First release : Date 
 
 ## **8. Deployment**
+
+readme-deployment-2 
+
+The website is hosted on [Heroku]( https://www.heroku.com/) from the main branch of the [co2-score Git repository]( https://github.com/Stephen-J-Whitaker/co2-score)
+  **The deployment procedure is as follows:**
+
+  <details><summary>1. Log in or create a new account (click to expand)<summary>
+ 
+  ![Deployment step 1](docs/images/readme-deployment-1.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>2. From the dashboard, select ‘Create new app’ (click to expand)<summary>
+ 
+  ![Deployment step 2](docs/images/readme-deployment-2.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>3. Name the app, each apps on the Heroku platform require a unique name, then select a region and click create app (click to expand)<summary>
+ 
+  ![Deployment step 3](docs/images/readme-deployment-3.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>4. Click on ‘Settings’ in the top menu bar (click to expand)<summary>
+ 
+  ![Deployment step 4](docs/images/readme-deployment-4.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>5. Click on ‘Reveal Config Vars’ (click to expand)<summary>
+ 
+  ![Deployment step 5](docs/images/readme-deployment-5.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>6. Enter the confir var details as shown in the image below (click to expand). In the first field enter ‘CREDS’ and copy the entire contents of the creds.json file, containing the Google Spreadsheet access credentials into the empty filed next to it. When complete, click the ‘ADD’ button next to the fields. New empty fields will appear below the CREDS fields. In the first of these fields enter ‘PORT’ and ‘8000’ in the second. When complete, click ADD<summary>
+ 
+  ![Deployment step 6](docs/images/readme-deployment-6.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>7. Immediately below the config var section is the ‘Buildpacks’ section. Click ‘Add Buildpacks’ (click to expand)<summary>
+ 
+  ![Deployment step 7](docs/images/readme-deployment-7.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>8. Select ‘python’ and then click ‘Save Changes’ (click to expand)<summary>
+ 
+  ![Deployment step 8](docs/images/readme-deployment-8.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>9. Select ‘nodejs’ and then click ‘Save Changes’ (click to expand)<summary>
+ 
+  ![Deployment step 9](docs/images/readme-deployment-9.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>10. The build packs section should look like the image below with python above nodejs. They can be clicked and dragged to rearrange if necessary (click to expand)<summary>
+ 
+  ![Deployment step 10](docs/images/readme-deployment-10.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>11. Click on ‘Deploy’ on the main menu ribbon at the top of the page and then click ‘GitHub’ (click to expand)<summary>
+ 
+  ![Deployment step 11](docs/images/readme-deployment-11.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>12. If necessary, confirm that you want to connect to GitHub by clicking ‘Connect to GitHub’ (click to expand)<summary>
+ 
+  ![Deployment step 12](docs/images/readme-deployment-12.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>13. Search for the GitHub repository name (click to expand)<summary>
+ 
+  ![Deployment step 13](docs/images/readme-deployment-13.jpg)
+  </details>
+
+  <br>
+
+  <br>
+
+  <details><summary>14. Click either ‘Enable Automatic Deploys’ which will automatically redeploy the app each time the Git repository is updated, or ‘Deploy Branch’ to deploy the app manually as requried (click to expand)<summary>
+ 
+  ![Deployment step 14](docs/images/readme-deployment-14.jpg)
+  </details>
+
+  <br>
+
+  <details><summary>15. If ‘Deploy Branch’ was selected the screen will look like the following image when deployment is complete (click to expand)<summary>
+ 
+  ![Deployment step 15](docs/images/readme-deployment-15.jpg)
+  </details>
+
+  <br>
+
 
 ## **9. Technologies Used**
 
