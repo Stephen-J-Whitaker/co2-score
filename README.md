@@ -216,9 +216,29 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 ## **5. Testing**
 
-input errors
+- **Code Validation**
+  
+  The code written for the project was exclusively in the Python language. All other code dependencies were written by third parties and validation of this code was out of scope.
 
-pep 8
+  - Python Validation
+    
+    The Python code was validated and its styling checked using the [Code Institute Python Linter](https://pep8ci.herokuapp.com/#)
+
+    ![Python Linter validation results](docs/images/readme-python-validation-results.jpg)
+
+- **Functionailty Tests**
+
+  Tests were carried out on the ['CO2 score'](https://co2-score.herokuapp.com/) app deployed on Heroku.
+
+  - [User story 1 acceptance test results](docs/pdfs/readme-user-story-1-acceptance-test-results.pdf)
+
+  - [User story 2 acceptance test results](docs/pdfs/readme-user-story-2-acceptance-test-results.pdf)
+
+  - [User story 3 acceptance test results](docs/pdfs/readme-user-story-3-acceptance-test-results.pdf)
+
+  - [Feature acceptance test results](docs/pdfs/readme-feature-acceptance-test-results.pdf)
+
+input errors
 
 bugs
 
@@ -381,6 +401,8 @@ The website is hosted on [Heroku]( https://www.heroku.com/) from the main branch
   - [GitHub](https://github.com/) : Used for accessing committed code repositories and hosting the completed product online
 
   - [Git](https://git-scm.com/): Used for code version control
+
+  - [Code Institute Python Linter](https://pep8ci.herokuapp.com/#): Used to calidate and check the styling of the Python code
 
   - Windows 10 snipping tool for creating screen grabbed jpeg files for the readme
 
