@@ -226,6 +226,12 @@ validation errors
 
 ## **6. Project Sign Off**
 
+  Once all of the user stories and their feature dependencies have passed their respective acceptance tests then the user story as a whole is deemed ready for release.
+
+  The overall user story acceptance test results along with the acceptance test result summaries of their feature dependencies are detailed in the following sign off sheet.
+
+ - [Project Sign Off](docs/pdfs/readme-project-sign-off.pdf)
+
 ## **7. Releases**
 
 - ###  Version 1.0 First release : Date 
