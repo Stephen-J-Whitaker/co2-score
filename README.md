@@ -1,5 +1,8 @@
 # **CO2 Score**
-['CO2 score'](https://co2-score.herokuapp.com/) is a piece of software that provides the user with a score that presents the amount of carbon dioxide that their current lifestyle contributes to the atmosphere. Carbon dioxide and their equivalents contribute to global warming and the risk of irreparable damage to our ecosystem. It is a topic that is close to the hearts of many.
+['CO2 score'](https://co2-score.herokuapp.com/) is a piece of software that runs in a mock terminal developed by [Code Institute](https://codeinstitute.net/) and is hosted on [Heroku](https://www.heroku.com/).
+
+'CO2 Score' provides the user with a score that presents the amount of carbon dioxide that their current lifestyle contributes to the atmosphere. Carbon dioxide and their equivalents contribute to global warming and the risk of irreparable damage to our ecosystem. It is a topic that is close to the hearts of many.
+
 Based on the questions provided on wikiHOW.com, the questionnaire caters for those with a passing interest and those who wish to optimise their lifestyle and monitor their performance improvement by repeating the questionnaire on different dates and comparing their current and previous scores. The questions provide useful information that can help to guide the user in improving their carbon score by altering their lifestyle should they wish to do so.
 
 - [Link to live 'CO2 Score' terminal site](https://co2-score.herokuapp.com/)
@@ -192,6 +195,20 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 ## **3. Instructions**
 
+  The tool provides an estimate of the carbon dioxide and carbon dioxide equivalents produced by the user by asking the user a set of questions the answers each of which have a number of points associated with them.
+
+  The software logs the number of the points that the user has received for each of the answers that they give and the sum of these points becomes the users final score or ‘carbon score’.
+
+  The lower the users score the better. If the score is less than 60 points, then the user is making a small impact on your planet. If it’s higher than 60, then it is suggested that the user might want to look for some ways that they can reduce their impact.
+
+  Suggestions given to the user are that they can replace old appliances with energy-efficient ones, purchase items with less packaging, use public transportation or a carpool, compost, and/or recycle.
+
+  The user could plant some trees. A tree can absorb a ton of carbon over its lifetime.
+
+  When the user has completed the questionnaire they can elect to have their results stored in the external spreadsheet for later retrieval and comparison to a future result they can achieve.
+  
+  Although there is no personal information held, apart from the questionnaire responses and final score, the user can choose to delete their data from the external spreadsheet should they wish to do so via the ‘Administer data’ menu reached from the ‘Main menu’.
+
 ## **4. Features**
 
 ## **5. Testing**
@@ -202,7 +219,7 @@ pep 8
 
 bugs
 
-
+validation errors
 
 ## **6. Project Sign Off**
 
