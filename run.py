@@ -181,7 +181,7 @@ def administer_data(current_user):
         previous_score = current_user.previous_results["final_score"]
         gui.terminal_control("clear_screen")
         bar_chart(current_user, int(previous_score), int(180), "previous")
-        print("\033[14;2H" + questionnaire_details["summary"] + "\n\n")
+        print("\033[14;2H" + questionnaire_details["summary"] + "\n")
         input("\033[1CPress enter to continue.....")
         administer_data(current_user)
     elif response == "2":
