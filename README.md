@@ -212,11 +212,11 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 ## **4. Features**
 
 
-- **Potential Future Features**
+-  ### **Potential Future Features**
 
 ## **5. Testing**
 
-- **Code Validation**
+- ### **Code Validation**
   
   The code written for the project was exclusively in the Python language. All other code dependencies were written by third parties and validation of this code was out of scope.
 
@@ -226,7 +226,20 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     ![Python Linter validation results](docs/images/readme-python-validation-results.jpg)
 
-- **Functionailty Tests**
+  - Validation error found and corrected 
+
+    A for loop had been used to generate the random user id code and the validator reported that the ‘index’ variable was ‘unused’
+
+    ![Validation error](docs/images/readme-validation-error.jpg)
+    
+    ![Validation error report](docs/images/readme-validation-error-1.jpg)
+    
+    The resolution was to replace the for loop with a while loop. An index variable is initialised to 5 (the number of characters required for the user id) and 
+    decremented by one on each iteration of the while loop. The while loop repeats whilst index is greater than 5. 
+    
+    ![Validation error resolution](docs/images/readme-validation-error-2.jpg)
+
+- ### **Functionailty Tests**
 
   Tests were carried out on the ['CO2 score'](https://co2-score.herokuapp.com/) app deployed on Heroku.
 
@@ -238,9 +251,16 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - [Feature acceptance test results](docs/pdfs/readme-feature-acceptance-test-results.pdf)
 
-input errors
+- ### **Other Testing**
 
-bugs
+  The software was made available to third parties throughout the development process to ensure that it had been tested by people other than the developer.
+
+- ### **Bugs Found and Resolved or Current**
+
+  |Bug|Resolution|
+  |---|----------|
+
+
 
 validation errors
 
