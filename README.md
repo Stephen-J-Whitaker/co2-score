@@ -211,6 +211,9 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 ## **4. Features**
 
+
+- **Potential Future Features**
+
 ## **5. Testing**
 
 input errors
@@ -231,10 +234,48 @@ validation errors
 
 ## **9. Technologies Used**
 
+  - [Python](https://www.python.org/)
+
+  - [Corel Draw](https://www.coreldraw.com/en/) : Used for developing the mockups for the website and SVG game pad interface
+
+  - [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/): Used to create the terminal globe and background graphics
+
+  - [Apple Mac OS](https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12) : Used to create screen grabbed movies for user story demonstrations
+
+  - [Adobe Express]( https://www.adobe.com/express/feature/video/convert/video-to-gif): Used to create user story demonstration gifs from mov files
+
+  - [Microsoft Excel](https://www.microsoft.com/en-ie/microsoft-365/excel) : Used for documenting features and recording test results
+
+  - [Microsoft Visio](https://www.microsoft.com/en-ie/microsoft-365/visio/flowchart-software)
+
+  - [Chrome](https://www.google.com/intl/en_ie/chrome/) : Used for research, development and testing
+
+  - [Safari](https://www.apple.com/safari/) : Used for testing
+
+  - [Opera](https://www.opera.com/) : Used for testing
+
+  - [Edge](https://www.microsoft.com/en-us/edge) : Used for testing
+
+  - [Firefox](https://www.mozilla.org/en-US/firefox/new/) : Used for testing
+
+  - [Notepad++](https://notepad-plus-plus.org/downloads/) : Used for text file editing
+
+  - [GitPod](https://www.gitpod.io/) : Used for product development and testing
+
+  - [GitHub](https://github.com/) : Used for accessing committed code repositories and hosting the completed product online
+
+  - [Git](https://git-scm.com/): Used for code version control
+
+  - Windows 10 snipping tool for creating screen grabbed jpeg files for the readme
+
+  - [Am I Responsive]( https://ui.dev/amiresponsive): Used to create the responsiveness mockup used at the top of this readme file
+
+
 ## **10. Credits**
 
 - ### **Content**
   - All code was written by the author, [Stephen Whitaker](https://github.com/Stephen-J-Whitaker), unless explicitly stated within the code.
+  - The mock terminal in which the software runs was developed by and provided by [Code Institute](https://codeinstitute.net/ie/) via a [template for GitPod](https://github.com/Code-Institute-Org/python-essentials-template)
   - The content of the questionnaire was sourced from [wikiHOW](https://www.wikihow.com/Calculate-Your-Carbon-Footprint)
   - [Third party libraries](#software-dependencies) were imported to support the software as described in the [Third party libraries](#software-dependencies) section.
   - Code in order to gain access to the external spreadsheet was provided by [Code Institute](https://codeinstitute.net/ie/)
