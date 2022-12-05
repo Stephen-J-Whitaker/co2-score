@@ -305,10 +305,6 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     Modifying the questions is as simple as altering the text in the external spreadsheet and restarting the software. To repurpose the software for a completely new questionnaire would require changes to the title screen such that they are fit for purpose.
 
-    If the user is not already logged in and on navigating to the questionnaire the user is asked if they have a user id to retrieve previously their previously stored date. Should they enter a 5 character alphanumeric code they had been given on their previous use of the software, then their previous scores are loaded to compare to their scores of their current session.
-
-    ![Log in]( docs/images/readme-log-in.jpg)
-
     Each question is presented to the user and the software waits for an answer option to be selected.
     The option selected by the user is validated. The software checks that an option has been entered,  whether or not the option selected is in range and whether it consists of valid characters.
 
@@ -392,15 +388,52 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	Implemented in [run.py](run.py)
 
-  -	###  **Data Deletion** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
+    If the user is not already logged in and on navigating to the questionnaire the user is asked if they have a user id to retrieve previously their previously stored date. If they press enter without entering an id then they are taken straight to the questionnaire on the assumption they're a new user.
 
-    -	The ‘Data Deletion' (ID10) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10) is a dependency of user story 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
+    ![Log in]( docs/images/readme-log-in.jpg)
+
+    Should they enter a 5 character alphanumeric code they had been given on their previous use of the software, then their previous scores are loaded to compare to their scores of their current session.
+
+    The user id entered by the user is validated. The length of the entered id is checked, the characters in the id are checked for validity and it is checked whether or not the user id entered is in the external spreadsheet. Should the user id fail validation, then the user is given the options of trying again or continuing to the questionnaire (as they may have forgotten their id or accidentally typed an entry).
+
+    ![User id validation]( docs/images/readme-user-id-validation.jpg) 
+
+  -	###  **Stored User Menu (Administer Data)** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11)]
+
+    -	The ‘Stored User Menu' (ID11) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11) is a dependency of user story 3 [user stories](docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
 
-  -	###  **Stored User Menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11)]
+    On selection of the 'stored user menu', (‘Administer Data’ menu) from the main menu and in the event that they are not logged in, the user is asked if they have a user id using the same screen as described in the ‘Load Saved Data’ feature.
 
-    -	The ‘Stored User Menu' (ID11) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11) is a dependency of user story 3 [user stories](docs/pdfs/readme-user-stories.pdf)
+    If the user presses the enter key without entering a user id, they are taken back to the main menu. 
+    If the user enters an id then their id is validated in the same way as described for the ‘Load Saved Data’ feature and if found to be valid their previous data will be loaded and they will be taken to the Administer Data, (‘stored user’) menu.
+
+    ![Administer Data Menu]( docs/images/readme-administer-data-menu.jpg)
+
+    On pressing enter from the menu, it is checked that an option has been chosen, that the option is in range and that it only contains valid characters. If any of these validation checks fail then the user is taken back to the administer data menu to try again.
+    
+    If ‘Review previous data’ is chosen then the user is shown the score loaded from the external spreadsheet along with a bar chart showing their score compared to the maximum possible score and some useful information regarding how they could improve their score.
+
+    Pressing enter when they’re finished reviewing their score takes the user back to the ‘Administer Data’ menu.
+
+    ![Previous score summary]( docs/images/readme-previous-score-summary.jpg)
+
+    Selecting ‘Delete Data’ from the menu triggers the row with the users data in it to be deleted from the external spreadsheet. The user is shown a deletion confirmation screen and asked to press enter to continue. 
+
+
+    ![Data deletion confirmation]( docs/images/readme-delete-data.jpg)
+
+    On pressing enter they are taken to a screen informing them they have also been logged to reassure them that none of their data remains present in the session. Internally this log out process means that the variables holding their data have been deleted. Pressing enter here will take the user back to the main menu as they no longer need the Administer data menu.
+
+    ![Post deletion log out confirmation]( docs/images/readme-post-deletion-log-out.jpg)
+
+    Lastly, the ‘Administer Data’ menu has the option to return to the main menu. Should they select this option, they remain logged in.
+
+
+  -	###  **Data Deletion** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
+
+    -	The ‘Data Deletion' (ID10) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10) is a dependency of user story 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
 
