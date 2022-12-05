@@ -297,7 +297,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	The ‘Carbon Questionnaire’ (ID4) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire‘ (ID4) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
-    -	Implemented in [run.py](run.py) and [questionnaire.py]( questionnaire.py)
+    -	Implemented in [run.py](run.py), [questionnaire.py]( questionnaire.py) and google sheets
 
     The ‘Carbon Questionnaire’ If the main feature of the software.
 
@@ -365,7 +365,16 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	The ‘Data repository’ (ID7) [Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data repository‘ (ID7) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
-    -	Implemented in [run.py](run.py)
+    -	Implemented in [run.py](run.py) and google sheets
+
+    When the user elects to store their data for the first time, their results are appended to the external google spreadsheet into the ‘co2_scores’ worksheet with their user id and the date of the session.
+
+    ![User data storage](docs/images/readme-user-data.jpg)
+
+    If the user is logged in when they finish the questionnaire, then their previous results in the spreadsheet are updated with their new session results.
+
+    ![Update user data]( docs/images/readme-data-update.jpg)
+
 
   -	###  **Exit Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Exit Screen' (ID8)]
 
@@ -373,25 +382,25 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	Implemented in [run.py](run.py)
 
-    -	###  **Load Saved Data** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9)]
+  -	###  **Load Saved Data** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9)]
 
     -	The ‘Load Saved Data’ (ID9) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9) is a dependency of user stories 2 and 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
 
-    -	###  **Data Deletion** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
+  -	###  **Data Deletion** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
 
     -	The ‘Data Deletion' (ID10) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10) is a dependency of user story 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
 
-    -	###  **Stored User Menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11)]
+  -	###  **Stored User Menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11)]
 
     -	The ‘Stored User Menu' (ID11) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11) is a dependency of user story 3 [user stories](docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
 
-    -	###  **Log Out Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12)]
+  -	###  **Log Out Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12)]
 
     -	The ‘Log Out Screen' (ID12) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12) is a dependency of user stories 2 and 3 [user stories](docs/pdfs/readme-user-stories.pdf)
 
