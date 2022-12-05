@@ -234,7 +234,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   -	###  **Title Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Title Screen’ (ID1)]
     -	The ‘Title Screen’ (ID1) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Title Screen’ (ID1) is a dependency of all of the [user stories]( docs/pdfs/readme-user-stories.pdf)
-    -	Implemented in [run.py]( run.py) and [gui.py]( gui.py)
+    -	Implemented in [run.py](run.py) and [gui.py](gui.py)
     
     The opening sequence with an image of Earth followed by the title screen is the user’s introduction to the software. 
     For new users an image of the Earth ‘sets the scene’ for the questionnaire that follows and the blues and greens, inspired by the colours of Earth, are harmonious and calming help improve the users experience.
@@ -248,7 +248,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   -	###  **Options menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Options menu’ (ID2)]
     -	The ‘Options menu’ (main menu) (ID2) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Options menu’ (ID1) is a dependency of all of the [user stories]( docs/pdfs/readme-user-stories.pdf)
 
-    -	Implemented in [run.py]( run.py)
+    -	Implemented in [run.py](run.py)
 
     The ‘Options menu’, (main menu) is in the common interface theme of a blue background and white text.
     As the user would expect, it has a title ‘main menu’ and it provides access to all of the main features of the software.
@@ -285,7 +285,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	The ‘Instructions’ (ID3) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Instructions’ (ID3) is a dependency of all of the [user stories]( docs/pdfs/readme-user-stories.pdf)
 
-    -	Implemented in [run.py]( run.py)
+    -	Implemented in [run.py](run.py)
 
     As the user would expect, the Instructions feature gives an overview of the relevance and use of the ‘CO2 score’ tool.
 
@@ -297,7 +297,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	The ‘Carbon Questionnaire’ (ID4) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire‘ (ID4) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
-    -	Implemented in [run.py]( run.py) and [questionnaire.py]( questionnaire.py)
+    -	Implemented in [run.py](run.py) and [questionnaire.py]( questionnaire.py)
 
     The ‘Carbon Questionnaire’ If the main feature of the software.
 
@@ -326,7 +326,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	The ‘Carbon Footprint Score’ (ID5) [Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Footprint Score‘ (ID5) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
-    -	Implemented in [run.py]( run.py)
+    -	Implemented in [run.py](run.py)
 
     Once all of the questions have been answered, the number of points allocated to each of the question responses are summed and the final score displayed to the user with their score shown as a proportion of the 180 maximum score possible on the questionnaire.
 
@@ -338,6 +338,64 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     ![Final score current and previous]( docs/images/readme-final-score-comparison.jpg)
 
+
+  -	###  **Store Menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Store Menu' (ID6)]
+
+    -	The ‘Store Menu’ (ID6) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Store Menu‘ (ID6) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
+
+    Should the user not be logged in and on completion of the questionnaire they are asked to press enter to continue. When they press enter they are taken to the ‘store menu’. They are asked to enter ‘y’ if they’d like to have their date stored or ‘n’ if not.
+
+    The users response is validated and checked for presence, whether it is in range and whether it consists of valid characters.
+
+    ![Store menu]( docs/images/readme-store-menu.jpg)
+
+    If the user enters ‘y’ then they are given a random 5 character alphanumeric code that can be used to log in and retrieve their stored data on a subsequent use of the software.
+
+    A random code is used so that no personal data needs to be stored in the external spreadsheet. It is believed that not collecting and storing personal data such as name, address, phone number etc will increase the likelihood of users being happy to fill in the questionnaire and use it to improve their carbon footprint over time.
+
+    Once that the user has noted down their user code and they press enter to continue, their data is stored to the external spreadsheet, they remain logged in and they are returned to the main menu.
+
+    ![User id allocation]( docs/images/readme-user-id.jpg)
+
+    If the user enters ‘n’ then they are returned to the main menu and their data is deleted from the software.
+
+  -	###  **Data repository** [[Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data repository' (ID7)]
+
+    -	The ‘Data repository’ (ID7) [Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data repository‘ (ID7) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
+
+  -	###  **Exit Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Exit Screen' (ID8)]
+
+    -	The ‘Exit Screen’ (ID8) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Exit Screen' (ID8) is a dependency of user stories 1, 2 and 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
+
+    -	###  **Load Saved Data** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9)]
+
+    -	The ‘Load Saved Data’ (ID9) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9) is a dependency of user stories 2 and 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
+
+    -	###  **Data Deletion** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
+
+    -	The ‘Data Deletion' (ID10) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10) is a dependency of user story 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
+
+    -	###  **Stored User Menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11)]
+
+    -	The ‘Stored User Menu' (ID11) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Stored User Menu' (ID11) is a dependency of user story 3 [user stories](docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
+
+    -	###  **Log Out Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12)]
+
+    -	The ‘Log Out Screen' (ID12) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12) is a dependency of user stories 2 and 3 [user stories](docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py](run.py)
 
 -  ### **Potential Future Features**
 
