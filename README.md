@@ -281,6 +281,58 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     <br>
 
+  -	###  **Instructions** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Instructions’ (ID3)]
+
+    -	The ‘Instructions’ (ID3) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Instructions’ (ID3) is a dependency of all of the [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py]( run.py)
+
+    As the user would expect, the Instructions feature gives an overview of the relevance and use of the ‘CO2 score’ tool.
+
+    Once read the user can choose to go directly to the questionnaire which is efficient than having to go back to the main menu first. However, should the user wish to return to the main menu they also have that option.
+
+    ![Instructions](docs/images/readme-instructions.jpg)
+
+  -	###  **Carbon Questionnaire** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire (ID4)]
+
+    -	The ‘Carbon Questionnaire’ (ID4) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire ‘ (ID4) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py]( run.py) and [questionnaire.py]( questionnaire.py)
+
+    The ‘Carbon Questionnaire’ If the main feature of the software.
+
+    The software reads the questionnaire into variables when the software first runs. The reason for this design choice was so that should the need arise the questionnaire tool can easily be repurposed or the questions modified.
+
+    Modifying the questions is as simple as altering the text in the external spreadsheet and restarting the software. To repurpose the software for a completely new questionnaire would require changes to the title screen such that they are fit for purpose.
+
+    If the user is not already logged in and on navigating to the questionnaire the user is asked if they have a user id to retrieve previously their previously stored date. Should they enter a 5 character alphanumeric code they had been given on their previous use of the software, then their previous scores are loaded to compare to their scores of their current session.
+
+    ![Log in]( docs/images/readme-log-in.jpg)
+
+    Each question is presented to the user and the software waits for an answer option to be selected.
+    The option selected by the user is validated. The software checks that an option has been entered,  whether or not the option selected is in range and whether it consists of valid characters.
+
+    ![Question]( docs/images/readme-question.jpg)
+
+    Once confirmed to be valid the user has is shown a bar chart that shows the number of points that they have just received towards their carbon score as a proportion of the maximum number of points that they could have received.
+
+    ![Response confirmation]( docs/images/readme-question-answer-confirmed.jpg)
+
+    If the user is logged in then they are shown a bar chart of the score they were previously given as well.
+
+    ![Previous score]( docs/images/readme-previous-question-score.jpg)
+    
+    Once all of the questions have been answered, the number of points allocated to each of the question responses are summed and the final score displayed to the user with their score shown as a proportion of the 180 maximum score possible on the questionnaire.
+
+    If the users final score is less than or equal to 60, the recommended highest score, then the bar is coloured green else it is coloured red.
+
+    ![Final score]( docs/images/readme-final-score.jpg)
+
+    If the user is logged in, they are also shown their previous final score for comparison.
+
+    ![Final score current and previous]( docs/images/readme-final-score-comparison.jpg)
+
+
 -  ### **Potential Future Features**
 
     -  An opening sequence animation of the globe spinning could be implemented by creating bitmap frames and putting them in the images folder wo be looped through and printed sequentially to the screen.
