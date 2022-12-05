@@ -17,19 +17,19 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 3 [Instructions](#3-instructions)
 
-4 [Features](#3-features)
+4 [Features](#4-features)
 
-5 [Testing](#4-testing)
+5 [Testing](#5-testing)
 
-6 [Project Sign Off](#5-project-sign-off)
+6 [Project Sign Off](#6-project-sign-off)
 
-7 [Releases](#6-releases)
+7 [Releases](#7-releases)
 
-8 [Deployment](#7-deployment)
+8 [Deployment](#8-deployment)
 
-9 [Technologies Use](#8-technologies-used)
+9 [Technologies Use](#9-technologies-used)
 
-10 [Credits](#9-credits)
+10 [Credits](#10-credits)
 
 ## **1. Project Initiation**
 - User stories
@@ -499,13 +499,6 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   Tests were carried out on the ['CO2 score'](https://co2-score.herokuapp.com/) app deployed on Heroku.
 
   - [User story 1 acceptance test results](docs/pdfs/readme-user-story-1-acceptance-test-results.pdf)
-    
-    <details><summary>User story 1 demo</summary>
-  
-    ![User story 1 demo](docs/images/readme-user-story-1-demo.gif)
-    </details>
-
-    <br>
 
   - [User story 2 acceptance test results](docs/pdfs/readme-user-story-2-acceptance-test-results.pdf)
 
