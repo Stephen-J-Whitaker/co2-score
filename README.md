@@ -54,7 +54,9 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     - **Interface Layout**
 
-      For aesthetics, the mock terminal is centred within the HTML page in which it is presented and, again for aesthetics, the ‘run program’ button is horizontally centred above the mock terminal. 
+      For aesthetics, the mock terminal is centred within the HTML page in which it is presented and, again for aesthetics, the ‘run program’ button is horizontally centred above the mock terminal.
+
+      ![Mock terminal](docs/images/readme-mock-terminal.jpg)
 
       The CLI itself is hardcoded to 80 character cell columns and 24 character cell rows which was a constraint of the project.
 
@@ -70,7 +72,8 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     - **Colour Scheme**
 
-      The theme of the software being related to Earth’s atmosphere, a harmonious colour scheme inspired by the colours commonly used to depict Earth from space were chosen. Images were designed in blues and greens and the interface and text were styled blue and white respectively. 
+      The theme of the software being related to Earth’s atmosphere, a harmonious colour scheme inspired by the colours commonly used to depict Earth from space were chosen. Images were designed in blues and greens and the interface and text were styled blue and white respectively.
+
       The exception to this was the result page score bar which is green if the total score is less than or equal to the recommended level of 60 and red if it is above 60.
       
       The colour scheme of the CLI is restricted to those that the mock terminal can generate, that can be accessed by ANSI Escape characters and functions made available through the [Colorama Python library]( https://pypi.org/project/colorama/)
