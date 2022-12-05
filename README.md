@@ -499,6 +499,13 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   Tests were carried out on the ['CO2 score'](https://co2-score.herokuapp.com/) app deployed on Heroku.
 
   - [User story 1 acceptance test results](docs/pdfs/readme-user-story-1-acceptance-test-results.pdf)
+    
+    <details><summary>User story 1 demo</summary>
+  
+    ![User story 1 demo](docs/images/readme-user-story-1-demo.gif)
+    </details>
+
+    <br>
 
   - [User story 2 acceptance test results](docs/pdfs/readme-user-story-2-acceptance-test-results.pdf)
 
