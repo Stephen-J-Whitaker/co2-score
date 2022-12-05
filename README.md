@@ -412,7 +412,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
     ![Administer Data Menu]( docs/images/readme-administer-data-menu.jpg)
 
     On pressing enter from the menu, it is checked that an option has been chosen, that the option is in range and that it only contains valid characters. If any of these validation checks fail then the user is taken back to the administer data menu to try again.
-    
+
     If ‘Review previous data’ is chosen then the user is shown the score loaded from the external spreadsheet along with a bar chart showing their score compared to the maximum possible score and some useful information regarding how they could improve their score.
 
     Pressing enter when they’re finished reviewing their score takes the user back to the ‘Administer Data’ menu.
@@ -421,21 +421,31 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     Selecting ‘Delete Data’ from the menu triggers the row with the users data in it to be deleted from the external spreadsheet. The user is shown a deletion confirmation screen and asked to press enter to continue. 
 
-
     ![Data deletion confirmation]( docs/images/readme-delete-data.jpg)
 
     On pressing enter they are taken to a screen informing them they have also been logged to reassure them that none of their data remains present in the session. Internally this log out process means that the variables holding their data have been deleted. Pressing enter here will take the user back to the main menu as they no longer need the Administer data menu.
 
     ![Post deletion log out confirmation]( docs/images/readme-post-deletion-log-out.jpg)
 
-    Lastly, the ‘Administer Data’ menu has the option to return to the main menu. Should they select this option, they remain logged in.
+    Lastly, the ‘Administer Data’ menu has the option to return to the main menu. Should the user select this option, they remain logged in.
 
 
-  -	###  **Data Deletion** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
+  -	###  **Data Deletion** [[Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10)]
 
-    -	The ‘Data Deletion' (ID10) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10) is a dependency of user story 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
+    -	The ‘Data Deletion' (ID10) [Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Data Deletion' (ID10) is a dependency of user story 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
+
+    Selecting ‘Delete Data’ from the menu triggers the row with the users data in it to be deleted from the external spreadsheet. The user is shown a deletion confirmation screen and asked to press enter to continue.  
+
+    - Before data deletion:
+
+      ![Pre data deletion]( docs/images/readme-pre-data-deletion.jpg)
+
+    - Data deletion confirmed in spreadsheet:
+    
+      ![Data deletion complete]( docs/images/readme-data-deletion-complete.jpg)
+
 
   -	###  **Log Out Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12)]
 
@@ -489,6 +499,8 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   - [User story 3 acceptance test results](docs/pdfs/readme-user-story-3-acceptance-test-results.pdf)
 
   - [Feature acceptance test results](docs/pdfs/readme-feature-acceptance-test-results.pdf)
+
+  - Note: The mock terminal does not support mobile and the software has not yet been tested on any Linux operating systems.
 
 - ### **Other Testing**
 
