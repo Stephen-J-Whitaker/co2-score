@@ -295,7 +295,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   -	###  **Carbon Questionnaire** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire (ID4)]
 
-    -	The ‘Carbon Questionnaire’ (ID4) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire ‘ (ID4) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
+    -	The ‘Carbon Questionnaire’ (ID4) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire‘ (ID4) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py]( run.py) and [questionnaire.py]( questionnaire.py)
 
@@ -321,7 +321,13 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
     If the user is logged in then they are shown a bar chart of the score they were previously given as well.
 
     ![Previous score]( docs/images/readme-previous-question-score.jpg)
-    
+
+  -	###  **Carbon Footprint Score** [[Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Questionnaire (ID5)]
+
+    -	The ‘Carbon Footprint Score’ (ID5) [Data Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Carbon Footprint Score‘ (ID5) is a dependency of user stories 1 and 2 [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py]( run.py)
+
     Once all of the questions have been answered, the number of points allocated to each of the question responses are summed and the final score displayed to the user with their score shown as a proportion of the 180 maximum score possible on the questionnaire.
 
     If the users final score is less than or equal to 60, the recommended highest score, then the bar is coloured green else it is coloured red.
