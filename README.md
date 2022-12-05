@@ -382,6 +382,10 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     -	Implemented in [run.py](run.py)
 
+    On selecting ‘Exit Software’ from the main menu, the software displays an exit screen showing the globe and the text ‘Exiting’ before finally ending execution of the program and clearing the screen. The software can be restarted by clicking the ‘Run Program’ button above the mock terminal.
+
+    ![Exit software]( docs/images/readme-exit-software.jpg)
+
   -	###  **Load Saved Data** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9)]
 
     -	The ‘Load Saved Data’ (ID9) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Load Saved Data' (ID9) is a dependency of user stories 2 and 3 [user stories]( docs/pdfs/readme-user-stories.pdf)
