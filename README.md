@@ -259,6 +259,12 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   |Bug|Resolution|
   |---|----------|
+  |Bar charts weren’t representing the scores correctly and the bar was not always 100% filled when the score was the maximum possible score|The round function had been used to determine the proportion of the bar to be filled which meant that it was sometimes rounded down. The resolution was to use math.ceil to round the proportion up after the entire calculation had taken place|
+  |The algorithm to calculate the proportion of the bar chart to be coloured wouldn’t work correctly if the score was greater than 55 (the maximum number of character cells available to form the bar)|The only score that can be above 55 is 180, the final score. The algorithm was altered so that  if the score is greater than 55 then the score it and the maximum possible score are both divided by 4 to scale them down below 55 prior to calculating the proportion of the bar to colour|
+  |The API call to update the spreadsheet with a user’s new results was failing|The format of the data that was being sent to the API was a list and should have been a list of lists|
+  |When copying the current session results to the previous session results variable the When the current session results updated the previous session results appeared to be updated to the same values at the same time even though they should have remained unchanged|The software would copy the current session result to the previous session result using ‘=’ which meant that the current session results and previous session results had the same ‘identity’ as could be verified using the python ‘id’ function. The ‘=’ command was replaced with ‘copy.depcopy’ which ensured that current session and previous session were unique entities|
+  |Verification that the user id had not already been allocated prior to giving it to the user was not taking place|The google sheet API command ‘find’ was used to confirm that the generated user id had not already been allocated. If ‘find’ returns ‘None’ the user id had=s not already been used|
+
 
 
 
