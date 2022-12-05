@@ -203,17 +203,17 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   The tool provides an estimate of the carbon dioxide and carbon dioxide equivalents produced by the user by asking the user a set of questions the answers each of which have a number of points associated with them.
 
-  The software logs the number of the points that the user has received for each of the answers that they give and the sum of these points becomes the users final score or ‘carbon score’.
+  - The software logs the number of the points that the user has received for each of the answers that they give and the sum of these points becomes the users final score or ‘carbon score’.
 
-  The lower the users score the better. If the score is less than 60 points, then the user is making a small impact on your planet. If it’s higher than 60, then it is suggested that the user might want to look for some ways that they can reduce their impact.
+  - The lower the users score the better. If the score is less than 60 points, then the user is making a small impact on your planet. If it’s higher than 60, then it is suggested that the user might want to look for some ways that they can reduce their impact.
 
-  Suggestions given to the user are that they can replace old appliances with energy-efficient ones, purchase items with less packaging, use public transportation or a carpool, compost, and/or recycle.
+  - Suggestions given to the user are that they can replace old appliances with energy-efficient ones, purchase items with less packaging, use public transportation or a carpool, compost, and/or recycle.
 
-  The user could plant some trees. A tree can absorb a ton of carbon over its lifetime.
+  - The user could plant some trees. A tree can absorb a ton of carbon over its lifetime.
 
-  When the user has completed the questionnaire they can elect to have their results stored in the external spreadsheet for later retrieval and comparison to a future result they can achieve.
+  - When the user has completed the questionnaire they can elect to have their results stored in the external spreadsheet for later retrieval and comparison to a future result they can achieve.
   
-  Although there is no personal information held, apart from the questionnaire responses and final score, the user can choose to delete their data from the external spreadsheet should they wish to do so via the ‘Administer data’ menu reached from the ‘Main menu’.
+  - Although there is no personal information held, apart from the questionnaire responses and final score, the user can choose to delete their data from the external spreadsheet should they wish to do so via the ‘Administer data’ menu reached from the ‘Main menu’.
 
 ## **4. Features**
 
@@ -223,7 +223,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
     -  An opening sequence animation of the globe spinning could be implemented by creating bitmap frames and putting them in the images folder wo be looped through and printed sequentially to the screen.
 
     - Keep more than one set of previous session results for the user to see their change in score over time.
-    
+
     - Chart the user’s improvement in score if more session results are stored.
 
     - Provide a more suggestions regarding how they could reduce their score such as by telling them which single adjustment would make the largest reduction in their total score.
@@ -464,3 +464,5 @@ The website is hosted on [Heroku]( https://www.heroku.com/) from the main branch
 - ### **Acknowledgements**
   - A special thank you to my mentor Maranatha Ilesanmi
   - Thank you to all those who were kind enough to test the website and provide feedback
+
+## [Back To Top](#Contents)
