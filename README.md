@@ -532,7 +532,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 ## **7. Releases**
 
-- ###  Version 1.0 First release : Date 
+- ###  Version 1.0 First release : Date 05/12/2022
 
 ## **8. Deployment**
 
