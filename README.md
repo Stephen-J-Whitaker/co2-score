@@ -191,7 +191,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - ### **Security**
 
-    In the interest of security, the current use variable is deleted from the system before the software returns the user to the main menu in the event that the user choose not to have their data saved.
+    In the interest of security, the current session results variable is deleted from the system before the software returns the user to the main menu in the event that the user choose not to have their data saved.
 
     When the user elects to have their data saved they are allocated a random 5 character alphanumeric code with which to retrieve their data. Their questions answer scores and their total score along with the date of the session are stored in the external spreadsheet along with this random code. No other personal data, (for example, name, address, age, email, phone number) are stored. 
 
@@ -219,6 +219,14 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
 
 -  ### **Potential Future Features**
+
+    -  An opening sequence animation of the globe spinning could be implemented by creating bitmap frames and putting them in the images folder wo be looped through and printed sequentially to the screen.
+
+    - Keep more than one set of previous session results for the user to see their change in score over time.
+    
+    - Chart the user’s improvement in score if more session results are stored.
+
+    - Provide a more suggestions regarding how they could reduce their score such as by telling them which single adjustment would make the largest reduction in their total score.
 
 ## **5. Testing**
 
@@ -268,7 +276,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   |Bar charts weren’t representing the scores correctly and the bar was not always 100% filled when the score was the maximum possible score|The round function had been used to determine the proportion of the bar to be filled which meant that it was sometimes rounded down. The resolution was to use math.ceil to round the proportion up after the entire calculation had taken place|
   |The algorithm to calculate the proportion of the bar chart to be coloured wouldn’t work correctly if the score was greater than 55 (the maximum number of character cells available to form the bar)|The only score that can be above 55 is 180, the final score. The algorithm was altered so that  if the score is greater than 55 then the score it and the maximum possible score are both divided by 4 to scale them down below 55 prior to calculating the proportion of the bar to colour|
   |The API call to update the spreadsheet with a user’s new results was failing|The format of the data that was being sent to the API was a list and should have been a list of lists|
-  |When copying the current session results to the previous session results variable the When the current session results updated the previous session results appeared to be updated to the same values at the same time even though they should have remained unchanged|The software would copy the current session result to the previous session result using ‘=’ which meant that the current session results and previous session results had the same ‘identity’ as could be verified using the python ‘id’ function. The ‘=’ command was replaced with ‘copy.depcopy’ which ensured that current session and previous session were unique entities|
+  |When the current session results updated the previous session results appeared to be updated to the same values at the same time even though they should have remained unchanged|The software would copy the current session result to the previous session result using ‘=’ which meant that the current session results and previous session results had the same ‘identity’ as could be verified using the python ‘id’ function. The ‘=’ command was replaced with ‘copy.depcopy’ which ensured that current session and previous session were unique entities|
   |Verification that the user id had not already been allocated prior to giving it to the user was not taking place|The google sheet API command ‘find’ was used to confirm that the generated user id had not already been allocated. If ‘find’ returns ‘None’ the user id had=s not already been used|
 
 ## **6. Project Sign Off**
