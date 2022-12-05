@@ -425,7 +425,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     On pressing enter they are taken to a screen informing them they have also been logged to reassure them that none of their data remains present in the session. Internally this log out process means that the variables holding their data have been deleted. Pressing enter here will take the user back to the main menu as they no longer need the Administer data menu.
 
-    ![Post deletion log out confirmation]( docs/images/readme-post-deletion-log-out.jpg)
+    ![Post deletion log out confirmation](docs/images/readme-logged-out.jpg)
 
     Lastly, the ‘Administer Data’ menu has the option to return to the main menu. Should the user select this option, they remain logged in.
 
@@ -452,6 +452,12 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
     -	The ‘Log Out Screen' (ID12) [Feature](docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Log Out Screen' (ID12) is a dependency of user stories 2 and 3 [user stories](docs/pdfs/readme-user-stories.pdf)
 
     -	Implemented in [run.py](run.py)
+
+    When logged in a ‘Log out’ option is available in the main menu.
+
+    Selecting ‘Log out’ from the main menu deletes the variable containing the users information from the software and takes the user to a page confirming that log out is complete. Pressing enter on this page takes the user back to the main menu.
+
+    ![Log out confirmation]( docs/images/readme-logged-out.jpg)
 
 -  ### **Potential Future Features**
 
