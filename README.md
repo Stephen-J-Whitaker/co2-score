@@ -87,6 +87,10 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
       ![Earth shown on startup](docs/images/readme-earth-image.jpg)
 
+      A background with a white frame was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as a backgound for the software title.
+
+      ![Blue background and frame](docs/images/readme-background-frame.jpg)
+
       The same principle of colours and printing full cell ascii characters to the screen was used to produce bar charts to depict the proportion that the users score represents compared to the maximum possible score.
 
       ![Bar charts](docs/images/readme-bar-chart.jpg)
