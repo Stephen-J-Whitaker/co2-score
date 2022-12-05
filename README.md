@@ -230,7 +230,56 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   - Although there is no personal information held, apart from the questionnaire responses and final score, the user can choose to delete their data from the external spreadsheet should they wish to do so via the ‘Administer data’ menu reached from the ‘Main menu’.
 
 ## **4. Features**
+  Multiple user stories are dependent on each of the features and links to the dependent user stories and their respective acceptance criteria are provided along with links to the feature list and the features’ acceptance criteria.
 
+  -	###  **Title Screen** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Title Screen’ (ID1)]
+    -	The ‘Title Screen’ (ID1) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Title Screen’ (ID1) is a dependency of all of the [user stories]( docs/pdfs/readme-user-stories.pdf)
+    -	Implemented in [run.py]( run.py) and [gui.py]( gui.py)
+    
+    The opening sequence with an image of Earth followed by the title screen is the user’s introduction to the software. 
+    For new users an image of the Earth ‘sets the scene’ for the questionnaire that follows and the blues and greens, inspired by the colours of Earth, are harmonious and calming help improve the users experience.
+    
+    ![Earth shown on startup](docs/images/readme-earth-image.jpg)
+    
+    The title ‘CO2 Score’ and tag line ‘Calculate your co2 score’ on the subsequent title screen immediately indicates the purpose of the software to the user.
+    
+    ![Blue background and frame](docs/images/readme-background-frame.jpg)
+
+  -	###  **Options menu** [[Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Options menu’ (ID2)]
+    -	The ‘Options menu’ (main menu) (ID2) [Feature]( docs/pdfs/readme-feature-acceptance-criteria.pdf) ‘Options menu’ (ID1) is a dependency of all of the [user stories]( docs/pdfs/readme-user-stories.pdf)
+
+    -	Implemented in [run.py]( run.py)
+
+    The ‘Options menu’, (main menu) is in the common interface theme of a blue background and white text.
+    As the user would expect, it has a title ‘main menu’ and it provides access to all of the main features of the software.
+
+    ![Options menu](docs/images/readme-options-menu.jpg)
+
+    When the user is logged in it shows the user id of the user logged in at the top and an additional meu option of log out is added to the bottom of the options list.
+
+    ![Logged in](docs/images/readme-options-menu-logged-in.jpg)
+
+    Options entered by the user are validated. If they are out of range, invalid characters or no option has been entered then the user is given as many chances as they need to enter a valid option. Examples of validation responses are shown below.
+
+    <details><summary>No option selected (Click to expand)</summary>
+    
+    ![No option selected](docs/images/readme-options-menu-no-option-chosen.jpg)
+    </details>
+
+    <br>
+    <details><summary>Option selected out of range (Click to expand)</summary>
+  
+    ![Option selected out of range](docs/images/readme-options-menu-out-of-range.jpg)
+    </details>
+
+    <br>
+
+    <details><summary>Invalid characters entered (Click to expand)</summary>
+  
+    ![Invalid characters entered](docs/images/readme-options-menu-invalid-characters.jpg)
+    </details>
+
+    <br>
 
 -  ### **Potential Future Features**
 
