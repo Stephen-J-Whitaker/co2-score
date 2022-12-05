@@ -83,17 +83,26 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
       2 character cells next to each other horizontally take up a square region of the CLI therefore, with the CLI being 80 characters across by 24 down, bitmaps of 40 by 24 pixels can be transferred to the CLI by colouring full cell ASCII characters appropriately and printing them to the screen using the bitmap as a template.
 
-      A 40 x 24 pixel image of Earth was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as an image to be shown on startup.
-
+      <details><summary>A 40 x 24 pixel image of Earth was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as an image to be shown on startup. (click to expand)</summary>
+    
       ![Earth shown on startup](docs/images/readme-earth-image.jpg)
+      </details>
 
-      A background with a white frame was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as a backgound for the software title.
+      <br>   
 
+      <details><summary>A background with a white frame was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as a backgound for the software title. (click to expand)</summary>
+    
       ![Blue background and frame](docs/images/readme-background-frame.jpg)
+      </details>
 
-      The same principle of colours and printing full cell ascii characters to the screen was used to produce bar charts to depict the proportion that the users score represents compared to the maximum possible score.
+      <br>
 
+      <details><summary>The same principle of colours and printing full cell ascii characters to the screen was used to produce bar charts to depict the proportion that the users score represents compared to the maximum possible score. (click to expand)</summary>
+    
       ![Bar charts](docs/images/readme-bar-chart.jpg)
+      </details>
+
+      <br>
 
     - **User Feedback**
 
@@ -103,9 +112,11 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - ### **Software Logic**
 
-    A flow diagram was developed that incorporated all of the features that were ascertained as required to fulfil the user stories were. Algorithms were outlined along with some pseudo code for the key functions of the software. 
+    A flow diagram was developed that incorporated all of the features that were ascertained as required to fulfil the user stories. 
 
     - [Software Logic Flow Diagram](docs/pdfs/readme-feature-code-design-v1.pdf)
+
+    Algorithms were outlined along with some pseudo code for the key functions of the software. 
 
     - [Python Code Outline and Pseudo Code](docs/pdfs/readme-pseudo-code.pdf)
 
