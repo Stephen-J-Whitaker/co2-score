@@ -58,7 +58,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
       ![Mock terminal](docs/images/readme-mock-terminal.jpg)
 
-      The CLI itself is hardcoded to 80 character cell columns and 24 character cell rows which was a constraint of the project.
+      The command line interface (CLI) itself is hardcoded to 80 character cell columns and 24 character cell rows which was a constraint of the project.
 
       Within the CLI, images are centred for aesthetics and text is printed to the command line interface such that it is one character in from the edge for readability. Any requests to press enter to continue are at the bottom of the terminal.
 
@@ -86,14 +86,14 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
       2 character cells next to each other horizontally take up a square region of the CLI therefore, with the CLI being 80 characters across by 24 down, bitmaps of 40 by 24 pixels can be transferred to the CLI by colouring full cell ASCII characters appropriately and printing them to the screen using the bitmap as a template.
 
-      <details><summary>A 40 x 24 pixel image of Earth was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as an image to be shown on startup. (click to expand)</summary>
+      <details><summary>A 40 x 24 pixel image of Earth was produced in a Corel Paint to be used as an image to be shown on startup. (click to expand)</summary>
     
       ![Earth shown on startup](docs/images/readme-earth-image.jpg)
       </details>
 
       <br>   
 
-      <details><summary>A background with a white frame was produced in a [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) to be used as a backgound for the software title. (click to expand)</summary>
+      <details><summary>A background with a white frame was produced in a Corel Paint to be used as a backgound for the software title. (click to expand)</summary>
     
       ![Blue background and frame](docs/images/readme-background-frame.jpg)
       </details>
@@ -149,7 +149,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
         
         - “Summary”: [String] Summing up notice displayed at the end of the questionnaire
         
-        Each question is an instance of the Question class (defined in [questionnaire.py])(questionnaire.py). It holds the question string (what the user is being asked to respond to), the maximum possible integer score for the question and sequentially ordered list of question answer options that the user choses from.
+        Each question is an instance of the Question class, defined in [questionnaire.py](questionnaire.py). It holds the question string (what the user is being asked to respond to), the maximum possible integer score for the question and sequentially ordered list of question answer options that the user choses from.
         
         One questionnaire instance exists whilst the software is running and this contains as many Question instances as there are in the spreadsheet, which, with its current content, is 12 questions. 
 
@@ -177,9 +177,9 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - ### **External Spreadsheet**
 
-    An external Google Spreadsheet was selected as the data repository. It holds the questionnaire details that are read into the software on load as the user responses and scores. 
+    An external Google Spreadsheet was selected as the data repository. It holds the questionnaire details that are read into the software on load as well as the user responses and scores. 
     
-    The benefit of the questionnaire being read in from the spreadsheet on load is that it could quickyl be updated without modification to any code or redeployment. The software is simply restarted in order to update the questions held within it. 
+    The benefit of the questionnaire being read in from the spreadsheet on load is that it can quickly be updated without modification to any code or redeployment. The software is simply restarted in order to update the questions held within it. 
 
     The Google Spreadsheet is accessed via the Google Sheets API. The Spreadsheet format can be found below. For security, the API keys are in a file called creds.json that is included in the gitignore file and is never uploaded to GitHub.
 
@@ -205,7 +205,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - ### **Security**
 
-    In the interest of security, the current session results variable is deleted from the system before the software returns the user to the main menu in the event that the user choose not to have their data saved.
+    In the interest of security, the current session results variable is deleted from the system before the software returns the user to the main menu in the event that the user chooses not to have their data saved.
 
     When the user elects to have their data saved they are allocated a random 5 character alphanumeric code with which to retrieve their data. Their questions answer scores and their total score along with the date of the session are stored in the external spreadsheet along with this random code. No other personal data, (for example, name, address, age, email, phone number) are stored. 
 
@@ -225,7 +225,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
   - The user could plant some trees. A tree can absorb a ton of carbon over its lifetime.
 
-  - When the user has completed the questionnaire they can elect to have their results stored in the external spreadsheet for later retrieval and comparison to a future result they can achieve.
+  - When the user has completed the questionnaire they can elect to have their results stored in the external spreadsheet for later retrieval and comparison to a future result they achieve.
   
   - Although there is no personal information held, apart from the questionnaire responses and final score, the user can choose to delete their data from the external spreadsheet should they wish to do so via the ‘Administer data’ menu reached from the ‘Main menu’.
 
@@ -289,7 +289,7 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     As the user would expect, the Instructions feature gives an overview of the relevance and use of the ‘CO2 score’ tool.
 
-    Once read the user can choose to go directly to the questionnaire which is efficient than having to go back to the main menu first. However, should the user wish to return to the main menu they also have that option.
+    Once read the user can choose to go directly to the questionnaire which is more efficient than having to go back to the main menu first. However, should the user wish to return to the main menu they also have that option.
 
     ![Instructions](docs/images/readme-instructions.jpg)
 
@@ -303,14 +303,14 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
 
     The software reads the questionnaire into variables when the software first runs. The reason for this design choice was so that should the need arise the questionnaire tool can easily be repurposed or the questions modified.
 
-    Modifying the questions is as simple as altering the text in the external spreadsheet and restarting the software. To repurpose the software for a completely new questionnaire would require changes to the title screen such that they are fit for purpose.
+    Modifying the questions is as simple as altering the text in the external spreadsheet and restarting the software. Repurposing the software for a completely new questionnaire would require changes to the title screen such that they are fit for purpose.
 
     Each question is presented to the user and the software waits for an answer option to be selected.
     The option selected by the user is validated. The software checks that an option has been entered,  whether or not the option selected is in range and whether it consists of valid characters.
 
     ![Question]( docs/images/readme-question.jpg)
 
-    Once confirmed to be valid the user has is shown a bar chart that shows the number of points that they have just received towards their carbon score as a proportion of the maximum number of points that they could have received.
+    Once confirmed to be valid the user is shown a bar chart that shows the number of points that they have just received towards their carbon score as a proportion of the maximum number of points that they could have received.
 
     ![Response confirmation]( docs/images/readme-question-answer-confirmed.jpg)
 
@@ -517,10 +517,10 @@ Based on the questions provided on wikiHOW.com, the questionnaire caters for tho
   |Bug|Resolution|
   |---|----------|
   |Bar charts weren’t representing the scores correctly and the bar was not always 100% filled when the score was the maximum possible score|The round function had been used to determine the proportion of the bar to be filled which meant that it was sometimes rounded down. The resolution was to use math.ceil to round the proportion up after the entire calculation had taken place|
-  |The algorithm to calculate the proportion of the bar chart to be coloured wouldn’t work correctly if the score was greater than 55 (the maximum number of character cells available to form the bar)|The only score that can be above 55 is 180, the final score. The algorithm was altered so that  if the score is greater than 55 then the score it and the maximum possible score are both divided by 4 to scale them down below 55 prior to calculating the proportion of the bar to colour|
+  |The algorithm to calculate the proportion of the bar chart to be coloured wouldn’t work correctly if the score was greater than 55 (the maximum number of character cells available to form the bar)|The only score that can be above 55 is 180, the final score. The algorithm was altered so that if the score is greater than 55 then the score and the maximum possible score are both divided by 4 to scale them down below 55 prior to calculating the proportion of the bar to colour|
   |The API call to update the spreadsheet with a user’s new results was failing|The format of the data that was being sent to the API was a list and should have been a list of lists|
   |When the current session results updated the previous session results appeared to be updated to the same values at the same time even though they should have remained unchanged|The software would copy the current session result to the previous session result using ‘=’ which meant that the current session results and previous session results had the same ‘identity’ as could be verified using the python ‘id’ function. The ‘=’ command was replaced with ‘copy.depcopy’ which ensured that current session and previous session were unique entities|
-  |Verification that the user id had not already been allocated prior to giving it to the user was not taking place|The google sheet API command ‘find’ was used to confirm that the generated user id had not already been allocated. If ‘find’ returns ‘None’ the user id had=s not already been used|
+  |Verification that the user id had not already been allocated prior to giving it to the user was not taking place|The google sheet API command ‘find’ was used to confirm that the generated user id had not already been allocated. If ‘find’ returns ‘None’ the user id has not already been used|
 
 ## **6. Project Sign Off**
 
@@ -638,7 +638,7 @@ The website is hosted on [Heroku]( https://www.heroku.com/) from the main branch
 
   <br>
 
-  <details><summary>15. If ‘Deploy Branch’ was selected the screen will look like the following image when deployment is complete (click to expand)</summary>
+  <details><summary>15. If ‘Deploy Branch’ was selected the screen will look like the following image when deployment is complete. Click 'View' to open the app (click to expand)</summary>
  
   ![Deployment step 15](docs/images/readme-deployment-15.jpg)
   </details>
@@ -650,13 +650,9 @@ The website is hosted on [Heroku]( https://www.heroku.com/) from the main branch
 
   - [Python](https://www.python.org/)
 
-  - [Corel Draw](https://www.coreldraw.com/en/) : Used for developing the mockups for the website and SVG game pad interface
+  - [Corel Draw](https://www.coreldraw.com/en/) : Used for developing the mockups for the app
 
-  - [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/): Used to create the terminal globe and background graphics
-
-  - [Apple Mac OS](https://apps.apple.com/us/app/macos-big-sur/id1526878132?mt=12) : Used to create screen grabbed movies for user story demonstrations
-
-  - [Adobe Express]( https://www.adobe.com/express/feature/video/convert/video-to-gif): Used to create user story demonstration gifs from mov files
+  - [Corel Paint](https://www.coreldraw.com/en/pages/photo-editing/) : Used to create the terminal globe and background graphics
 
   - [Microsoft Excel](https://www.microsoft.com/en-ie/microsoft-365/excel) : Used for documenting features and recording test results
 
@@ -680,7 +676,7 @@ The website is hosted on [Heroku]( https://www.heroku.com/) from the main branch
 
   - [Git](https://git-scm.com/): Used for code version control
 
-  - [Code Institute Python Linter](https://pep8ci.herokuapp.com/#): Used to calidate and check the styling of the Python code
+  - [Code Institute Python Linter](https://pep8ci.herokuapp.com/#): Used to validate and check the styling of the Python code
 
   - Windows 10 snipping tool for creating screen grabbed jpeg files for the readme
 
